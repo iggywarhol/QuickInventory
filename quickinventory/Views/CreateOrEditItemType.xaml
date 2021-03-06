@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="SimpleInventory.Views.CreateOrEditItemType"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleInventory.Views"
+             xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:models="clr-namespace:SimpleInventory.Models"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="150"
+                    Content="Cancel" Margin="15,5,5,5" Padding="10" Height="40" Command="{Binding ReturnToManageTypes}"/>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding ScreenTitle}" FontWeight="Bold" FontSize="16" 
+               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <StackPanel Margin="14,3,1,-4" Orientation="Vertical" Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Name" Margin="0,0,10,0" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Width="125" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+                <TextBox Width="300" Text="{Binding Name}" VerticalContentAlignment="Center" FontSize="14"
+                         x:Name="NameTextBox" TabIndex="0" AutomationProperties.IsRequiredForForm="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0.333,0">
+                <Label Content="Description" Margin="0,0,10,0" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Width="125" HorizontalContentAlignment="Right"/>
+                <TextBox Width="300" Text="{Binding Description}" VerticalContentAlignment="Center" FontSize="14" TabIndex="1"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <Label Content="Manufacturer" Margin="0,0,10,0" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Width="125" HorizontalContentAlignment="Right"/>
+                <ComboBox Margin="0,0,0,0" ItemsSource="{Binding ManufacturerList}" d:DataContext="{d:DesignInstance Type={x:Type models:ConfigItem}}" IsEditable="False"
+                          SelectedIndex="{Binding ManufacturerSelectedIndex}" IsTabStop="False" Width="200">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Display}" FontSize="14"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0.333,0">
+                <Label Content="Model" Margin="0,0,10,0" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Width="125" HorizontalContentAlignment="Right"/>
+                <TextBox Width="281" Text="{Binding Model}"  VerticalContentAlignment="Center" FontSize="14" TabIndex="1"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <Label Content="Category" Margin="0,0,10,0" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Width="125" HorizontalContentAlignment="Right"/>
+                <ComboBox Margin="0,0,0,0" ItemsSource="{Binding CategoryList}" d:DataContext="{d:DesignInstance Type={x:Type models:ConfigItem}}" IsEditable="False"
+                          SelectedIndex="{Binding CategorySelectedIndex}"  IsTabStop="False" Width="200">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Display}" FontSize="14"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+
+
+            
+            <Button HorizontalAlignment="Center" IsTabStop="False" Content="Save" Margin="323,5,312.333,5" Padding="10" Height="40" Width="150" Command="{Binding SaveItemType}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
