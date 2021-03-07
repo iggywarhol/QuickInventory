@@ -8,12 +8,26 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 //
+using SimpleInventory.Common;
 using SimpleInventory.Helpers;
 //
 namespace SimpleInventory.Models
 {
-    public class User
+    [Table("Users")]
+    public class User : PersonEntity
     {
+
+
+        //  public const int ClientIdMaxLength = 128;
+        //  public const int CompanyNameMaxLength = 128;
+        //  public const int EmailAddressMaxLength = 128;
+
+        //  public const int FirstNameMaxLength = 50;
+        //  public const int LastNameMaxLength = 50;
+        //  public const int PrefixMaxLength = 8;
+        //  public const int CredentialsMaxLength = 12;
+        //  public const int TitleMaxLength = 128;
+
         [Key]
         public long ID { get; set; }
         [MaxLength(100)]

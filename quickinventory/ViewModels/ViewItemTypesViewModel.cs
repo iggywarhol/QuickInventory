@@ -13,9 +13,9 @@ namespace SimpleInventory.ViewModels
 {
     class ViewItemTypesViewModel : BaseViewModel, ICreatedEditedItemType
     {
-        private ObservableCollection<bbItemType> _itemTypes;
+        private ObservableCollection<bbListType> _itemTypes;
         private int _selectedItemTypeIndex;
-        private bbItemType _selectedItem;
+        private bbListType _selectedItem;
         private bool _isNonDefaultItemSelected;
         private bool _isItemSelected;
 
@@ -35,7 +35,7 @@ namespace SimpleInventory.ViewModels
             set { _selectedItemTypeIndex = value; NotifyPropertyChanged(); IsItemSelected = value != -1; }
         }
 
-        public bbItemType SelectedItem
+        public bbListType SelectedItem
         {
             get { return _selectedItem; }
             set
@@ -82,7 +82,7 @@ namespace SimpleInventory.ViewModels
             PushViewModel(new CreateOrEditItemTypeViewModel(ViewModelChanger, this, SelectedItem) { CurrentUser = CurrentUser });
         }
 
-        public void DeleteItem(bbItemType itemType)
+        public void DeleteItem(bbListType itemType)
         {
             //if (itemType != null && !itemType.IsDefault && ItemTypes.Count != 1)
             //{
@@ -91,7 +91,7 @@ namespace SimpleInventory.ViewModels
             //}
         }
 
-        public void CreatedEditedItemType(bbItemType itemType, bool wasCreated)
+        public void CreatedEditedItemType(bbListType itemType, bool wasCreated)
         {
           //  if (itemType.IsDefault)
            // {

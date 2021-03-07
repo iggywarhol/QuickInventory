@@ -7,38 +7,30 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 //
-//using SimpleInventory.Helpers;
-//
 namespace SimpleInventory.Models
 {
-    public class bbItemType
+    public class bbListType : bbBaseList
     {
-        [Key]
-        public long ID { get; set; }
         [MaxLength(100)]
-        public string Name { get; set; }
-        [MaxLength(100)]
-        public string Description { get; set; }
         [Required]
-        public System.DateTime CreatedDate { get; set; }
+        public string Make { get; set; }
         [MaxLength(100)]
-        public string Manufacture { get; set; }   // Dell, HP, Epson, Logictech, Microsoft
-        [MaxLength(100)]
+        [Required]
         public string Model { get; set; }
-        
         [ForeignKey("Category")]
         public long? Category_ID { get; set; }
-        public bblistCategory Category { get; set; }// Monitor, Dock, Laptop, Desktop, switch, firewall
-        
+        public bbListCategory Category { get; set; }// Monitor, Dock, Laptop, Desktop, switch, firewall
         [ForeignKey("Tenant")]
         public long? Tenant_ID { get; set; }
         public bbTenant Tenant { get; set; }
-        public bbItemType()
+        [Required]
+        public double EstimatedCost { get; set; } = 0;
+        public bbListType()
         {
             ID = 0;
-            Name = "";
-            Description = "";
-            Manufacture = "DELL";
+            Value = "";
+            Display = "";
+            //Manufacture = ListTypeEnum.Manufacture;
         }
     }
 }

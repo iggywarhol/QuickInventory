@@ -16,6 +16,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,7 +29,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -80,6 +80,9 @@
   <ItemGroup>
     <Reference Include="BarcodeStandard, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\BarcodeLib.2.0.0\lib\netstandard2.0\BarcodeStandard.dll</HintPath>
+    </Reference>
+    <Reference Include="Bogus, Version=33.0.2.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bogus.33.0.2\lib\net40\Bogus.dll</HintPath>
     </Reference>
     <Reference Include="C1.CollectionView, Version=4.3.20193.437, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL">
       <HintPath>..\packages\C1.CollectionView.4.3.20193.437\lib\netstandard1.1\C1.CollectionView.dll</HintPath>
@@ -192,6 +195,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\Address.cs" />
+    <Compile Include="Common\ContactEntity.cs" />
+    <Compile Include="Common\PersonEntity.cs" />
     <Compile Include="Freshworks\fw_API.cs" />
     <Compile Include="Freshworks\fw_ConfigItem.cs" />
     <Compile Include="Freshworks\fw_cmdb_config_item.cs" />
@@ -200,33 +206,34 @@
     <Compile Include="Helpers\DateTimeExtensions.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\Utilities.cs" />
+    <Compile Include="Helpers\ValueObject.cs" />
     <Compile Include="Interfaces\IChangeViewModel.cs" />
     <Compile Include="Interfaces\IConfirmDelete.cs" />
     <Compile Include="Interfaces\ICreatedInventoryItem.cs" />
     <Compile Include="Interfaces\ICreatedEditedItemType.cs" />
     <Compile Include="Interfaces\ICreatedUser.cs" />
     <Compile Include="Interfaces\IDeletedModel.cs" />
-    <Compile Include="Migrations\202103051852501_start.cs" />
-    <Compile Include="Migrations\202103051852501_start.designer.cs">
-      <DependentUpon>202103051852501_start.cs</DependentUpon>
+    <Compile Include="Migrations\202103071425307_start.cs" />
+    <Compile Include="Migrations\202103071425307_start.designer.cs">
+      <DependentUpon>202103071425307_start.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\bbBaseList.cs" />
+    <Compile Include="Common\bbBaseList.cs" />
     <Compile Include="Models\bbInventoryItems.cs" />
-    <Compile Include="Models\bblistCurrency.cs" />
+    <Compile Include="Models\bbList.cs" />
+    <Compile Include="Models\bbListCurrency.cs" />
     <Compile Include="Migrations\DbContext.cs" />
-    <Compile Include="Models\bblistCategory.cs" />
-    <Compile Include="Models\bbBaseItem.cs" />
+    <Compile Include="Models\bbListCategory.cs" />
+    <Compile Include="Common\bbBaseItem.cs" />
     <Compile Include="Models\bbOrderItems.cs" />
-    <Compile Include="Models\bblistVendor.cs" />
-    <Compile Include="Models\bbOrder.cs" />
+    <Compile Include="Models\bbListVendor.cs" />
+    <Compile Include="Models\bbOrderGroup.cs" />
     <Compile Include="Models\bbOrderPayment.cs" />
     <Compile Include="Models\bbRequestGroup.cs" />
     <Compile Include="Models\bbRequestItems.cs" />
     <Compile Include="Models\bbTenant.cs" />
-    <Compile Include="Models\Groups.cs" />
-    <Compile Include="Models\bbBaseGroup.cs" />
-    <Compile Include="Models\bbItemType.cs" />
+    <Compile Include="Common\bbBaseGroup.cs" />
+    <Compile Include="Models\bbListType.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserPermissions.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
@@ -362,8 +369,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202103051852501_start.resx">
-      <DependentUpon>202103051852501_start.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103071425307_start.resx">
+      <DependentUpon>202103071425307_start.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

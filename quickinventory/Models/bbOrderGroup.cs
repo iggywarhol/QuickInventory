@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 //
 namespace SimpleInventory.Models
 {
-    public class bbOrder : bbBaseGroup
+    public class bbOrderGroup : bbBaseGroup
     {
         public string OrderName { get; set; }
         public ICollection<bbOrderItems> Orders { get; set; }

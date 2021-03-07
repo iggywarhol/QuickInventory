@@ -4,6 +4,6 @@ namespace SimpleInventory.Interfaces
 {
     interface ICreatedEditedItemType
     {
-        void CreatedEditedItemType(bbItemType itemType, bool wasCreated);
+        void CreatedEditedItemType(bbListType itemType, bool wasCreated);
     }
 }

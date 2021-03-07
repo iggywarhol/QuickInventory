@@ -27,7 +27,7 @@ namespace SimpleInventory.Views
         public ViewItemTypes()
         {
             InitializeComponent();
-            ItemsGrid.ItemsSource = simpleInventoryContext.ItemTypes.ToList();
+          //  ItemsGrid.ItemsSource = simpleInventoryContext.ItemTypes.ToList();
         }
 
         private void DeleteItemType_Click(object sender, RoutedEventArgs e)
@@ -36,7 +36,7 @@ namespace SimpleInventory.Views
                 "items that belong to this category will be moved to the default category.", "Delete Item Category", MessageBoxButton.YesNoCancel);
             if (result == MessageBoxResult.Yes)
             {
-                (DataContext as ViewItemTypesViewModel)?.DeleteItem(ItemsGrid.SelectedValue as bbItemType);
+                (DataContext as ViewItemTypesViewModel)?.DeleteItem(ItemsGrid.SelectedValue as bbListType);
             }
         }
     }

@@ -7,5 +7,9 @@ namespace SimpleInventory.Models
     {
         [MaxLength(100)]
         public string AssetID { get; set; }
+        [ForeignKey("Tenant")]
+        public long? Tenant_ID { get; set; }
+        public bbTenant Tenant { get; set; }
+
     }
 }

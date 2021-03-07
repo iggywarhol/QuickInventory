@@ -45,88 +45,157 @@ namespace SimpleInventory.Migrations
             context.Users.AddRange(usr);
             context.SaveChanges();
 
-            IList<bblistCurrency> cur = new List<bblistCurrency>();
-            cur.Add(new bblistCurrency() { CreatedDate = DateTime.Now, Name = "US Dollar", Abbreviation = "USD", Symbol = "$", ConversionRateToUSD = 1, IsDefaultCurrency = true });
-            cur.Add(new bblistCurrency() { CreatedDate = DateTime.Now, Name = "Cambodian Riel", Abbreviation = "KHR", Symbol = "៛", ConversionRateToUSD = 4050, IsDefaultCurrency = false });
-            context.Currencys.AddRange(cur);
-            context.SaveChanges();
-
-
-            string cfgstring = "Monitor,Dock,Laptop,Desktop,Switch,Firewall,Mouse,CD-ROM,DVD-Drive,Keyboard,Router,Access Point";
+            string cfgstring = "Dell,HP,Epson,LogicTech,Microsoft";
             List<string> cfgstringsplit = cfgstring.Split(',').ToList();
             foreach (string item in cfgstringsplit)
             {
-                bblistCategory x = new bblistCategory();
-                x.Display = "";
-                x.Value = "";
-                x.Tenant_ID = 1;               
+                bbList x = new bbList();
+                x.Type = ListTypeEnum.Manufacture;
+                x.Display = item;
+                x.Value = item;
+                x.Tenant_ID = 1;
                 x.CreatedDate = DateTime.Now;
-                context.Categories.Add(x);
+                x.CreatedUser_ID = 1;
+                context.Lists.Add(x);
+            }
+            context.SaveChanges();
+            //
+            // ListCategories
+            //
+            cfgstring = "Monitor,Dock,Laptop,Desktop,Switch,Firewall,Mouse,CD-ROM,DVD-Drive,Keyboard,Router,Access Point,Mouse & Keyboard";
+            cfgstringsplit = cfgstring.Split(',').ToList();
+            int idx = 1;
+            foreach (string item in cfgstringsplit)
+            {
+                bbListCategory x = new bbListCategory();
+                x.ID = idx++;
+                x.Display = item;
+                x.Value = item;
+                x.Tenant_ID = 1;
+                x.CreatedDate = DateTime.Now;
+                context.ListCategories.Add(x);
+            }
+            context.SaveChanges();
+            //
+            // ListCurrencys
+            //
+            IList<bbListCurrency> cur = new List<bbListCurrency>();
+            cur.Add(new bbListCurrency() { Tenant_ID = 1, CreatedDate = DateTime.Now, Name = "US Dollar", Abbreviation = "USD", Symbol = "$", ConversionRateToUSD = 1, IsDefaultCurrency = true }); ;
+            cur.Add(new bbListCurrency() { Tenant_ID = 1, CreatedDate = DateTime.Now, Name = "Cambodian Riel", Abbreviation = "KHR", Symbol = "៛", ConversionRateToUSD = 4050, IsDefaultCurrency = false });
+            context.ListCurrencys.AddRange(cur);
+            context.SaveChanges();
+            //
+            // Vendor
+            //
+            cfgstring = "Amazon,Best Buy,WalMart,HomeDepot,CDW,Newegg,Dell,Microsoft,Staples,Lowes,Wish,Target,Ebay";
+            cfgstringsplit = cfgstring.Split(',').ToList();
+            idx = 1;
+            foreach (string item in cfgstringsplit)
+            {
+                bbListVendor x = new bbListVendor();
+                x.ID = idx++;
+                x.Display = item;
+                x.Value = item;
+                x.Tenant_ID = 1;
+                x.CreatedDate = DateTime.Now;
+                x.CreatedUser_ID = 1;
+                context.ListVendors.Add(x);
+            }
+            context.SaveChanges();
+            //
+            //ListType
+            // 
+            //Cat, Make, Model, Display, Cost, Perfered Vendor
+            cfgstring = "";
+            cfgstring = cfgstring + "1,DELL,P2219H,22 Monitor,0.00,7:";
+            cfgstring = cfgstring + "1,DELL,P2319H,23 Monitor,0.00,7:";
+            cfgstring = cfgstring + "1,DELL,P2419H,24 Monitor,0.00,7:";
+            //
+            cfgstring = cfgstring + "2,DELL,WD19S,USB 3.0,188.9,6:";
+            cfgstring = cfgstring + "2,DELL,WD19DCS,USB-C,293.40,1:";
+            cfgstring = cfgstring + "2,DELL,WD19TB,Thunderbolt,389.99,7:";
+            //
+            cfgstring = cfgstring + "3,DELL,Precision 7750,Laptop,0.0,7:";
+            //
+            cfgstring = cfgstring + "4,DELL,Precision 5820,Tower,0.0,7:";
+            cfgstring = cfgstring + "4,DELL,Precision 3440,Small Form Factor,0.0,7:";
+            //
+            cfgstring = cfgstring + "5,DELL,N1108EP,Switch,839.10,7:";
+            cfgstring = cfgstring + "5,NETGEAR,GS110EMX,Switch,24.99,7:";
+            cfgstring = cfgstring + "5,NETGEAR,GS110EMX,Switch,24.99,7:";
+            //Linksys SE3016 16-Port Gigabit Ethernet Switch 19.99
+            //TP-Link TL-SG105 | 5 Port Gigabit 15.99
+            //NETGEAR 5-Port Gigabit Ethernet Unmanaged Switch (GS105NA) - Desktop, and ProSAFE Limited 29.99
+            //Linksys Business LGS116 16-Port Desktop  64.33
+            //
+            cfgstring = cfgstring + "6,DELL,TZ210,Firewall,115.00,7:";
+            cfgstring = cfgstring + "6,SonicWall,SOHO 250,Firewall,299.00,7:";
+            cfgstring = cfgstring + "6,Cisco,RV340,VPN Router with 4 Gigabit,Firewall,216.00,1:";
+            cfgstring = cfgstring + "6,Ubiquiti,Unifi Security Gateway (USG),Firewall,132.00,1:";
+            //
+            cfgstring = cfgstring + "7,Amazon Basics,1234567,3-Button USB Wired Computer Mouse,10.63,1:";
+            cfgstring = cfgstring + "7,Logitech,M510,Wireless Computer Mouse,25.99,1:";
+            //
+            cfgstring = cfgstring + "13,Microsoft,MS101,Wireless Keyboard and Mouse Combo,20.993,1:";
+            cfgstring = cfgstring + "13,Redragon,S101,Wired Gaming Keyboard and Mouse,39.993,1";
+            //
+            //
+            cfgstringsplit = cfgstring.Split(':').ToList();
+            foreach (string item in cfgstringsplit)
+            {
+                List<string> c1 = item.Split(',').ToList();
+                bbListType x = new bbListType();
+                x.Category_ID = Convert.ToInt32(c1[0]);
+                x.Make = c1[1];
+                x.Model = c1[2];
+                x.Display = c1[3];
+                x.Value = c1[2];
+                x.Tenant_ID = 1;
+                x.CreatedDate = DateTime.Now;
+                x.CreatedUser_ID = 1;
+                x.EstimatedCost = 0.0;
+                context.ListTypes.Add(x);
             }
             context.SaveChanges();
 
 
 
 
+
+            cfgstring = "It Supplies,Laptops,LCD Projector,Keyboards,Laser Printers";
+            cfgstringsplit = cfgstring.Split(',').ToList();
+            idx = 1;
+            foreach (string item in cfgstringsplit)
+            {
+                bbRequestGroup x = new bbRequestGroup();
+                x.ID = idx++;
+                x.Tenant_ID = 1;
+                x.CreatedDate = DateTime.Now;
+                x.CreatedUser_ID = 1;
+                x.RequestByDate = System.DateTime.Now.AddDays(7);
+                x.RequestByUser_ID = 1;
+                x.Name = item;
+                //public long? Approver1_ID { get; set; }
+                //public long? Approver2_ID { get; set; }
+                //context.ListVendors.Add(x);
+                // context.SaveChanges();
+            }
 
 
             /*
-            string cfgstring = "DELL,HP,Epson,Logitech,Microsoft,LG";
-            List<string> cfgstringsplit = cfgstring.Split(',').ToList();
-            List<ConfigItem> ConfigItems = new List<ConfigItem>();
-            foreach (string item in cfgstringsplit)
+            public string CSVconfig(string csvstr)
             {
-                ConfigItem x = new ConfigItem(item);
-                ConfigItems.Add(x);
+                List<string> cfgstringsplit = csvstr.Split(',').ToList();
+                List<ConfigItem> ConfigItems = new List<ConfigItem>();
+                foreach (string item in cfgstringsplit)
+                {
+                    ConfigItem x = new ConfigItem(item);
+                    ConfigItems.Add(x);
+                }
+                string output = JsonConvert.SerializeObject(ConfigItems);
+                return output;
             }
-            string output = JsonConvert.SerializeObject(ConfigItems);
             */
-
-
-
-            IList<Groups> grps = new List<Groups>();
-            grps.Add(new Groups() { ID = 1, Key = "Manufacture", Value = CSVconfig("DELL,HP,Epson,Logitech,Microsoft,LG")});
-            grps.Add(new Groups() { ID = 2, Key = "Category", Value = CSVconfig("Monitor,Dock,Laptop,Desktop,Switch,Firewall")});
-            context.Groups.AddRange(grps);
-            context.SaveChanges();
-
-            
-            //IList<bbItemType> itemtypes = new List<bbItemType>();
-            //itemtypes.Add(new bbItemType() { ID = 1, Name = "QLM0001", Description = "24 Monitor", Manufacture = "DELL", Model = "MD24", Category = "Monitor" });
-            //itemtypes.Add(new bbItemType() { ID = 2, Name = "QLM0002", Description = "32 Monitor", Manufacture = "LG", Model = "LG32C", Category = "Monitor" });
-            //itemtypes.Add(new bbItemType() { ID = 3, Name = "QLM0003", Description = "Desktop", Manufacture = "DELL", Model = "AREA 51 R2", Category = "Desktop" });
-            //itemtypes.Add(new bbItemType() { ID = 4, Name = "QLM0004", Description = "Laptop", Manufacture = "IBM", Model = "THNKPAD 32S", Category = "Laptop" });
-            //itemtypes.Add(new bbItemType() { ID = 5, Name = "QLM0005", Description = "Laptop", Manufacture = "DELL", Model = "Latatuide 5401", Category = "Laptop" });
-            //context.ItemTypes.AddRange(itemtypes);
-            //context.SaveChanges();
-
-            //IList<bbItem> inventroyitems = new List<bbItem>();
-            //inventroyitems.Add(new bbItem() { ID = 1, AssetID = "1000", ItemType_ID = 1 });
-            //inventroyitems.Add(new bbItem() { ID = 2, AssetID = "1001", ItemType_ID = 3 });
-            //inventroyitems.Add(new bbItem() { ID = 3, AssetID = "1001", ItemType_ID = 5 });
-            //context.Items.AddRange(inventroyitems);
-            //context.SaveChanges();
-
-
         }
-
-
-        public string CSVconfig(string csvstr)
-        {
-            List<string> cfgstringsplit = csvstr.Split(',').ToList();
-            List<ConfigItem> ConfigItems = new List<ConfigItem>();
-            foreach (string item in cfgstringsplit)
-            {
-                ConfigItem x = new ConfigItem(item);
-                ConfigItems.Add(x);
-            }
-            string output = JsonConvert.SerializeObject(ConfigItems);
-            return output;
-
-        }
-
-
     }
-
-
 }

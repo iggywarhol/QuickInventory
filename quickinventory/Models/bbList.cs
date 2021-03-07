@@ -3,14 +3,13 @@ using System.ComponentModel.DataAnnotations;
 //
 namespace SimpleInventory.Models
 {
-    public class bbBaseGroup
+    public enum ListTypeEnum
     {
-        [Key]
-        public long ID { get; set; }
-        public System.DateTime CreatedDate { get; set; }
-        [ForeignKey("User")]
-        public long? CreatedUser_ID { get; set; }
-        public User User { get; set; }
+        Manufacture = 1
+    }
+    public class bbList : bbBaseList
+    {
+        public ListTypeEnum Type { get; set; }
         [ForeignKey("Tenant")]
         public long? Tenant_ID { get; set; }
         public bbTenant Tenant { get; set; }

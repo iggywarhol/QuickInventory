@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 //
 namespace SimpleInventory.Models
 {
-    public class bblistCurrency
+    public class bbListCurrency
     {
         [Key]
         public int ID { get; set; }

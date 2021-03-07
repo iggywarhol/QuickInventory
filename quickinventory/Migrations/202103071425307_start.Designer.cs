@@ -13,7 +13,7 @@ namespace SimpleInventory.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202103051852501_start"; }
+            get { return "202103071425307_start"; }
         }
         
         string IMigrationMetadata.Source

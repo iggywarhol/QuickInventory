@@ -18,12 +18,12 @@ namespace SimpleInventory.ViewModels
         private string _assetID;
         private int _selecteditemcatindex;
         private bbBaseGroup _currentItemBeingEdited;
-        private ObservableCollection<bbItemType> _itemtypes;
+        private ObservableCollection<bbListType> _itemtypes;
         SimpleInventoryContext db = new SimpleInventoryContext();
         public CreateOrEditItemViewModel(IChangeViewModel viewModelChanger, ICreatedInventoryItem createdItemListener) : base(viewModelChanger)
         {
             _isCreating = true;
-            _itemtypes = new ObservableCollection<bbItemType>(db.ItemTypes.ToList());
+          //  _itemtypes = new ObservableCollection<bbListType>(db.ItemTypes.ToList());
             _currentItemBeingEdited = null;
             _assetID = "";
             ScreenTitle = "Add Item";
@@ -34,7 +34,7 @@ namespace SimpleInventory.ViewModels
         public CreateOrEditItemViewModel(IChangeViewModel viewModelChanger, bbBaseGroup item) : base(viewModelChanger)
         {
             _isCreating = false;
-            _itemtypes = new ObservableCollection<bbItemType>(db.ItemTypes.ToList());
+           // _itemtypes = new ObservableCollection<bbListType>(db.ItemTypes.ToList());
             _currentItemBeingEdited = item;
             //_assetID = item.AssetID;
             //_selecteditemcatindex = db.ItemTypes.ToList().FindIndex(m => m.Category == item.ItemType.Category); 
@@ -43,7 +43,7 @@ namespace SimpleInventory.ViewModels
             _inventoryItemID = item.ID;
         }
         #region Properties
-        public ObservableCollection<bbItemType> ItemTypes
+        public ObservableCollection<bbListType> ItemTypes
         {
             get { return _itemtypes; }
             set { _itemtypes = value; NotifyPropertyChanged(); }

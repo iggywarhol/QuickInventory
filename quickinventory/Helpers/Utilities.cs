@@ -37,7 +37,7 @@ namespace SimpleInventory.Helpers
             return "dddd, d MMMM, yyyy";
         }
 
-        public static decimal ConvertAmount(decimal amount, bblistCurrency initialCurrency, bblistCurrency toCurrency)
+        public static decimal ConvertAmount(decimal amount, bbListCurrency initialCurrency, bbListCurrency toCurrency)
         {
             if (initialCurrency.ConversionRateToUSD == 1)
             {

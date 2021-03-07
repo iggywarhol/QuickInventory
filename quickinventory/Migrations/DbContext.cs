@@ -14,17 +14,19 @@ namespace SimpleInventory.Models
         {
         }
         public DbSet<bbInventoryItems> InventoryItems { get; set; }
-        public DbSet<bbItemType> ItemTypes { get; set; }
-        public DbSet<bblistCategory> Categories { get; set; }
-        public DbSet<bblistCurrency> Currencys { get; set; }
-        public DbSet<bblistVendor> Vendors { get; set; }
-        public DbSet<bbOrder> Orders { get; set; }
+
+
+        public DbSet<bbList> Lists { get; set; }
+        public DbSet<bbListType> ListTypes { get; set; }
+        public DbSet<bbListCategory> ListCategories { get; set; }
+        public DbSet<bbListCurrency> ListCurrencys { get; set; }
+        public DbSet<bbListVendor> ListVendors { get; set; }
+        public DbSet<bbOrderGroup> OrderGroups { get; set; }
         public DbSet<bbOrderItems> OrderItems { get; set; }
         public DbSet<bbOrderPayment> OrderPayments { get; set; }
-        public DbSet<bbRequestGroup> RequestGroup { get; set; }
+        public DbSet<bbRequestGroup> RequestGroups { get; set; }
         public DbSet<bbRequestItems> RequestItems { get; set; }
         public DbSet<bbTenant> Tenants { get; set; }
-        public DbSet<Groups> Groups { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserPermission> UserPermissions { get; set; }
         //
