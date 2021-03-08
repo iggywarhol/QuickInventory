@@ -50,7 +50,7 @@ namespace SimpleInventory.Migrations
             foreach (string item in cfgstringsplit)
             {
                 bbList x = new bbList();
-                x.Type = ListTypeEnum.Manufacture;
+                x.Type = ListTypeEnum.Make;
                 x.Display = item;
                 x.Value = item;
                 x.Tenant_ID = 1;
@@ -141,10 +141,12 @@ namespace SimpleInventory.Migrations
             //
             //
             cfgstringsplit = cfgstring.Split(':').ToList();
+            idx = 1;
             foreach (string item in cfgstringsplit)
             {
                 List<string> c1 = item.Split(',').ToList();
                 bbListType x = new bbListType();
+                x.ID = idx++;
                 x.Category_ID = Convert.ToInt32(c1[0]);
                 x.Make = c1[1];
                 x.Model = c1[2];
@@ -160,12 +162,7 @@ namespace SimpleInventory.Migrations
 
 
 
-
-
-            cfgstring = "It Supplies,Laptops,LCD Projector,Keyboards,Laser Printers";
-            cfgstringsplit = cfgstring.Split(',').ToList();
             idx = 1;
-            foreach (string item in cfgstringsplit)
             {
                 bbRequestGroup x = new bbRequestGroup();
                 x.ID = idx++;
@@ -174,28 +171,33 @@ namespace SimpleInventory.Migrations
                 x.CreatedUser_ID = 1;
                 x.RequestByDate = System.DateTime.Now.AddDays(7);
                 x.RequestByUser_ID = 1;
-                x.Name = item;
-                //public long? Approver1_ID { get; set; }
-                //public long? Approver2_ID { get; set; }
+                x.Name = "It Supplies 1";
+                x.Approver1_ID = 1;
+                x.Approver2_ID = 2;
                 //context.ListVendors.Add(x);
-                // context.SaveChanges();
+                //context.SaveChanges();
             }
 
 
-            /*
-            public string CSVconfig(string csvstr)
+            idx = 1;
             {
-                List<string> cfgstringsplit = csvstr.Split(',').ToList();
-                List<ConfigItem> ConfigItems = new List<ConfigItem>();
-                foreach (string item in cfgstringsplit)
-                {
-                    ConfigItem x = new ConfigItem(item);
-                    ConfigItems.Add(x);
-                }
-                string output = JsonConvert.SerializeObject(ConfigItems);
-                return output;
+                bbRequestItems x = new bbRequestItems();
+                x.ID = idx++;
+                x.CreatedDate = System.DateTime.Now;
+                x.CreatedUser_ID = 1;
+                //x.ItemType_ID =
+                //x.Quantity=
+                //x.Cost=
+                //x.Tax =
+                //x.Shipping=
+                //x.Vendor_ID =
+                //x.CostCode1=
+                //x.CostCode2 =
+                //x.RequestedUser_ID =
             }
-            */
+
+
+
         }
     }
 }
