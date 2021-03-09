@@ -3,11 +3,11 @@ using SimpleInventory.Common;
 //
 namespace SimpleInventory.Models
 {
-   public class bbListVendor : bbBaseList
+    public class bb_Asset_Make : bbBaseList
     {
         [ForeignKey("Tenant")]
         public long? Tenant_ID { get; set; }
         public bbTenant Tenant { get; set; }
-        public Address  Address { get; set; }
+       // public Address Address { get; set; }
     }
 }

@@ -82,6 +82,7 @@ namespace SimpleInventory.Common
             //ThreeLetterISORegionName = getRegionInfo(Country)?.ThreeLetterISORegionName;
             return dto;
         }
+
         public Address(string line1, string line2, string city, string state, string zip, string country)
         {
             Line1 = line1;

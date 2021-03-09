@@ -213,9 +213,9 @@
     <Compile Include="Interfaces\ICreatedEditedItemType.cs" />
     <Compile Include="Interfaces\ICreatedUser.cs" />
     <Compile Include="Interfaces\IDeletedModel.cs" />
-    <Compile Include="Migrations\202103071425307_start.cs" />
-    <Compile Include="Migrations\202103071425307_start.designer.cs">
-      <DependentUpon>202103071425307_start.cs</DependentUpon>
+    <Compile Include="Migrations\202103092129229_start.cs" />
+    <Compile Include="Migrations\202103092129229_start.designer.cs">
+      <DependentUpon>202103092129229_start.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Common\bbBaseList.cs" />
@@ -223,18 +223,18 @@
     <Compile Include="Models\bbList.cs" />
     <Compile Include="Models\bbListCurrency.cs" />
     <Compile Include="Migrations\DbContext.cs" />
-    <Compile Include="Models\bbListCategory.cs" />
+    <Compile Include="Models\bb_Asset_Category.cs" />
     <Compile Include="Common\bbBaseItem.cs" />
-    <Compile Include="Models\bbListMake.cs" />
+    <Compile Include="Models\bb_Asset_Make.cs" />
+    <Compile Include="Models\bb_Asset_Model.cs" />
     <Compile Include="Models\bbOrderItems.cs" />
-    <Compile Include="Models\bbListVendor.cs" />
+    <Compile Include="Models\bb_Asset_Vendor.cs" />
     <Compile Include="Models\bbOrderGroup.cs" />
     <Compile Include="Models\bbOrderPayment.cs" />
     <Compile Include="Models\bbRequestGroup.cs" />
     <Compile Include="Models\bbRequestItems.cs" />
     <Compile Include="Models\bbTenant.cs" />
     <Compile Include="Common\bbBaseGroup.cs" />
-    <Compile Include="Models\bbListType.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserPermissions.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
@@ -370,8 +370,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202103071425307_start.resx">
-      <DependentUpon>202103071425307_start.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103092129229_start.resx">
+      <DependentUpon>202103092129229_start.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

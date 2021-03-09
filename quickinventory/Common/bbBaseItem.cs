@@ -14,9 +14,9 @@ namespace SimpleInventory.Models
         public User User { get; set; }
         //
         //
-        [ForeignKey("Type")]
-        public long ItemType_ID { get; set; }
-        public bbListType Type { get; set; }
+        //[ForeignKey("Type")]
+        //public long ItemType_ID { get; set; }
+        //public bbListType Type { get; set; }
         [Required]
         public int Quantity { get; set; }
         public double Cost { get; set; }
@@ -24,6 +24,6 @@ namespace SimpleInventory.Models
         public double Shipping { get; set; } = 0;
         [ForeignKey("Vendor")]
         public long? Vendor_ID { get; set; }
-        public bbListVendor Vendor { get; set; }
+        public bb_Asset_Vendor Vendor { get; set; }
     }
 }

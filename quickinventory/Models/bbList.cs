@@ -6,7 +6,7 @@ namespace SimpleInventory.Models
     public enum ListTypeEnum
     {
         Make = 1,
-        Modle = 1
+        Model = 1
     }
     public class bbList : bbBaseList
     {

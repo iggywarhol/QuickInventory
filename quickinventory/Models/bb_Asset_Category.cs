@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 //
 namespace SimpleInventory.Models
 {
-    public class bbListCategory : bbBaseList
+    public class bb_Asset_Category : bbBaseList
     {
         [ForeignKey("Tenant")]
         public long? Tenant_ID { get; set; }

@@ -4,12 +4,15 @@ Update-Database -verbose
 
 enable-migrations –EnableAutomaticMigration:$true 
 
-drop table bbListTypes
-drop table bbListCategories
-drop table bbList
-drop table bbTenants
-drop table Users
 drop table UserPermissions
+drop table Users
+drop table bbTenants
+drop table bbList
+drop table bbListTypes
+drop table bb_Asset_Category
+drop table bb_Asset_Make
+drop table bb_Asset_Model
+drop table bb_Asset_Vendor
 drop table bbRequestGroups
 drop table bbRequestItems
 drop table bbItemPurchases
@@ -22,7 +25,6 @@ drop table bbOrderItems
 drop table bbOrderPayments
 drop table bbItemTypes 
 drop table bbListCurrencies 
-drop table bbListVendors
 drop table Groups
 drop table FW_Inventory
 drop table __MigrationHistory

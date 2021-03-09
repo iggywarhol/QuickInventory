@@ -26,7 +26,7 @@ namespace SimpleInventory.ViewModels
         private int _categoryselectedindex = 0;
         private ObservableCollection<bbList> _categorylist;
         private ICreatedEditedItemType _createdEditedItemType;
-        private bbListType _itemBeingEdited;
+       // private bbListType _itemBeingEdited;
         //Groups groupM;
         //Groups groupC;
         List<bbList> _itemsM;
@@ -35,7 +35,7 @@ namespace SimpleInventory.ViewModels
         public CreateOrEditItemTypeViewModel(IChangeViewModel viewModelChanger, ICreatedEditedItemType createdItemType) : base(viewModelChanger)
         {
             ScreenTitle = "Add Item Category";
-            _itemBeingEdited = null;
+           // _itemBeingEdited = null;
             _createdEditedItemType = createdItemType;
             //
             Name = "";
@@ -64,10 +64,12 @@ namespace SimpleInventory.ViewModels
             }
             */
         }
+        
+        /*
         public CreateOrEditItemTypeViewModel(IChangeViewModel viewModelChanger, ICreatedEditedItemType createdItemType, bbListType itemType) : base(viewModelChanger)
         {
             ScreenTitle = "Edit Item Category";
-            _itemBeingEdited = itemType;
+           // _itemBeingEdited = itemType;
             _createdEditedItemType = createdItemType;
             _name = itemType.Value;
             Description = itemType.Display;
@@ -76,6 +78,7 @@ namespace SimpleInventory.ViewModels
             //_manufacturerSelectedIndex = _itemsM.FindIndex(m => m.Value == itemType.Manufacture);
             //_categoryselectedindex =  _itemsC.FindIndex(m => m.Value == itemType.Category); //"Latop"
         }
+        */
         public string ScreenTitle
         {
             get { return _screenTitle; }
@@ -132,22 +135,22 @@ namespace SimpleInventory.ViewModels
 
         private void SaveData()
         {
-            bbListType itemType = _itemBeingEdited != null ? _itemBeingEdited : new bbListType();
-            itemType.Value = Name;
-            itemType.Display = Description;
+            //bbListType itemType = _itemBeingEdited != null ? _itemBeingEdited : new bbListType();
+            //itemType.Value = Name;
+            //itemType.Display = Description;
             //itemType.Manufacture = ManufacturerList[_manufacturerSelectedIndex].Value;
-            itemType.Model = Model;
+            //itemType.Model = Model;
             //itemType.Category = CategoryList[_categoryselectedindex].Value;
-            if (_itemBeingEdited != null)
-            {
+            //if (_itemBeingEdited != null)
+            //{
              //   db.ItemTypes.AddOrUpdate(itemType);
-                db.SaveChanges();
-            }
-            else
-            {
+            //    db.SaveChanges();
+            //}
+            //else
+            //{
               //  db.ItemTypes.Add(itemType);
-                db.SaveChanges();
-            }
+            //    db.SaveChanges();
+            //}
             //db?.CreatedEditedItemType(itemType, _itemBeingEdited == null);
             PopViewModel();
         }

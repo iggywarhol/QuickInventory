@@ -48,7 +48,6 @@
                         Tenant_ID = c.Long(),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedUser_ID = c.Long(),
-                        ItemType_ID = c.Long(nullable: false),
                         Quantity = c.Int(nullable: false),
                         Cost = c.Double(nullable: false),
                         Tax = c.Double(nullable: false),
@@ -57,12 +56,10 @@
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.bbTenants", t => t.Tenant_ID)
-                .ForeignKey("dbo.bbListTypes", t => t.ItemType_ID, cascadeDelete: true)
                 .ForeignKey("dbo.Users", t => t.CreatedUser_ID)
-                .ForeignKey("dbo.bbListVendors", t => t.Vendor_ID)
+                .ForeignKey("dbo.bb_Asset_Vendor", t => t.Vendor_ID)
                 .Index(t => t.Tenant_ID)
                 .Index(t => t.CreatedUser_ID)
-                .Index(t => t.ItemType_ID)
                 .Index(t => t.Vendor_ID);
             
             CreateTable(
@@ -76,52 +73,6 @@
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.bbListTypes",
-                c => new
-                    {
-                        ID = c.Long(nullable: false, identity: true),
-                        Make = c.String(nullable: false, maxLength: 100),
-                        Model = c.String(nullable: false, maxLength: 100),
-                        Category_ID = c.Long(),
-                        Tenant_ID = c.Long(),
-                        EstimatedCost = c.Double(nullable: false),
-                        Display = c.String(maxLength: 100),
-                        Value = c.String(maxLength: 100),
-                        Sort = c.Int(nullable: false),
-                        Enabled = c.Boolean(nullable: false),
-                        Default = c.Boolean(nullable: false),
-                        CreatedDate = c.DateTime(nullable: false),
-                        CreatedUser_ID = c.Long(),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.bbListCategories", t => t.Category_ID)
-                .ForeignKey("dbo.bbTenants", t => t.Tenant_ID)
-                .ForeignKey("dbo.Users", t => t.CreatedUser_ID)
-                .Index(t => t.Category_ID)
-                .Index(t => t.Tenant_ID)
-                .Index(t => t.CreatedUser_ID);
-            
-            CreateTable(
-                "dbo.bbListCategories",
-                c => new
-                    {
-                        ID = c.Long(nullable: false, identity: true),
-                        Tenant_ID = c.Long(),
-                        Display = c.String(maxLength: 100),
-                        Value = c.String(maxLength: 100),
-                        Sort = c.Int(nullable: false),
-                        Enabled = c.Boolean(nullable: false),
-                        Default = c.Boolean(nullable: false),
-                        CreatedDate = c.DateTime(nullable: false),
-                        CreatedUser_ID = c.Long(),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.bbTenants", t => t.Tenant_ID)
-                .ForeignKey("dbo.Users", t => t.CreatedUser_ID)
-                .Index(t => t.Tenant_ID)
-                .Index(t => t.CreatedUser_ID);
-            
-            CreateTable(
                 "dbo.Users",
                 c => new
                     {
@@ -133,6 +84,14 @@
                         UserPermission_Id = c.Long(nullable: false),
                         Tenant_ID = c.Long(),
                         CreatedDate = c.DateTime(nullable: false),
+                        FirstName = c.String(maxLength: 50),
+                        LastName = c.String(maxLength: 50),
+                        Prefix = c.String(maxLength: 8),
+                        Credentials = c.String(maxLength: 12),
+                        Title = c.String(maxLength: 128),
+                        CompanyName = c.String(maxLength: 128),
+                        EmailAddress = c.String(maxLength: 128),
+                        EmailCC = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.bbTenants", t => t.Tenant_ID)
@@ -164,7 +123,27 @@
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.bbListVendors",
+                "dbo.bb_Asset_Vendor",
+                c => new
+                    {
+                        ID = c.Long(nullable: false, identity: true),
+                        Tenant_ID = c.Long(),
+                        Display = c.String(maxLength: 100),
+                        Value = c.String(maxLength: 100),
+                        Sort = c.Int(nullable: false),
+                        Enabled = c.Boolean(nullable: false),
+                        Default = c.Boolean(nullable: false),
+                        CreatedDate = c.DateTime(nullable: false),
+                        CreatedUser_ID = c.Long(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.bbTenants", t => t.Tenant_ID)
+                .ForeignKey("dbo.Users", t => t.CreatedUser_ID)
+                .Index(t => t.Tenant_ID)
+                .Index(t => t.CreatedUser_ID);
+            
+            CreateTable(
+                "dbo.bb_Asset_Category",
                 c => new
                     {
                         ID = c.Long(nullable: false, identity: true),
@@ -201,6 +180,56 @@
                 .Index(t => t.Tenant_ID);
             
             CreateTable(
+                "dbo.bb_Asset_Make",
+                c => new
+                    {
+                        ID = c.Long(nullable: false, identity: true),
+                        Tenant_ID = c.Long(),
+                        Display = c.String(maxLength: 100),
+                        Value = c.String(maxLength: 100),
+                        Sort = c.Int(nullable: false),
+                        Enabled = c.Boolean(nullable: false),
+                        Default = c.Boolean(nullable: false),
+                        CreatedDate = c.DateTime(nullable: false),
+                        CreatedUser_ID = c.Long(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.bbTenants", t => t.Tenant_ID)
+                .ForeignKey("dbo.Users", t => t.CreatedUser_ID)
+                .Index(t => t.Tenant_ID)
+                .Index(t => t.CreatedUser_ID);
+            
+            CreateTable(
+                "dbo.bb_Asset_Model",
+                c => new
+                    {
+                        ID = c.Long(nullable: false, identity: true),
+                        Make_ID = c.Long(),
+                        Category_ID = c.Long(),
+                        Tenant_ID = c.Long(),
+                        PreferredCost = c.Double(nullable: false),
+                        PreferredVendor_Id = c.Long(nullable: false),
+                        Display = c.String(maxLength: 100),
+                        Value = c.String(maxLength: 100),
+                        Sort = c.Int(nullable: false),
+                        Enabled = c.Boolean(nullable: false),
+                        Default = c.Boolean(nullable: false),
+                        CreatedDate = c.DateTime(nullable: false),
+                        CreatedUser_ID = c.Long(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.bb_Asset_Category", t => t.Category_ID)
+                .ForeignKey("dbo.bb_Asset_Make", t => t.Make_ID)
+                .ForeignKey("dbo.bb_Asset_Make", t => t.Tenant_ID)
+                .ForeignKey("dbo.Users", t => t.CreatedUser_ID)
+                .ForeignKey("dbo.bb_Asset_Vendor", t => t.PreferredVendor_Id, cascadeDelete: true)
+                .Index(t => t.Make_ID)
+                .Index(t => t.Category_ID)
+                .Index(t => t.Tenant_ID)
+                .Index(t => t.PreferredVendor_Id)
+                .Index(t => t.CreatedUser_ID);
+            
+            CreateTable(
                 "dbo.bbLists",
                 c => new
                     {
@@ -230,6 +259,7 @@
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedUser_ID = c.Long(),
                         Tenant_ID = c.Long(),
+                        Name = c.String(),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.bbTenants", t => t.Tenant_ID)
@@ -245,7 +275,6 @@
                         Tenant_ID = c.Long(),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedUser_ID = c.Long(),
-                        ItemType_ID = c.Long(nullable: false),
                         Quantity = c.Int(nullable: false),
                         Cost = c.Double(nullable: false),
                         Tax = c.Double(nullable: false),
@@ -255,13 +284,11 @@
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.bbTenants", t => t.Tenant_ID)
-                .ForeignKey("dbo.bbListTypes", t => t.ItemType_ID, cascadeDelete: true)
                 .ForeignKey("dbo.Users", t => t.CreatedUser_ID)
-                .ForeignKey("dbo.bbListVendors", t => t.Vendor_ID)
+                .ForeignKey("dbo.bb_Asset_Vendor", t => t.Vendor_ID)
                 .ForeignKey("dbo.bbOrderGroups", t => t.bbOrderGroup_ID)
                 .Index(t => t.Tenant_ID)
                 .Index(t => t.CreatedUser_ID)
-                .Index(t => t.ItemType_ID)
                 .Index(t => t.Vendor_ID)
                 .Index(t => t.bbOrderGroup_ID);
             
@@ -292,6 +319,7 @@
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedUser_ID = c.Long(),
                         Tenant_ID = c.Long(),
+                        Name = c.String(),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Users", t => t.Approver1_ID)
@@ -316,7 +344,6 @@
                         RequestedUser_ID = c.Long(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedUser_ID = c.Long(),
-                        ItemType_ID = c.Long(nullable: false),
                         Quantity = c.Int(nullable: false),
                         Cost = c.Double(nullable: false),
                         Tax = c.Double(nullable: false),
@@ -327,14 +354,12 @@
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Users", t => t.RequestedUser_ID, cascadeDelete: true)
                 .ForeignKey("dbo.bbTenants", t => t.Tenant_ID)
-                .ForeignKey("dbo.bbListTypes", t => t.ItemType_ID, cascadeDelete: true)
                 .ForeignKey("dbo.Users", t => t.CreatedUser_ID)
-                .ForeignKey("dbo.bbListVendors", t => t.Vendor_ID)
+                .ForeignKey("dbo.bb_Asset_Vendor", t => t.Vendor_ID)
                 .ForeignKey("dbo.bbRequestGroups", t => t.bbRequestGroup_ID)
                 .Index(t => t.Tenant_ID)
                 .Index(t => t.RequestedUser_ID)
                 .Index(t => t.CreatedUser_ID)
-                .Index(t => t.ItemType_ID)
                 .Index(t => t.Vendor_ID)
                 .Index(t => t.bbRequestGroup_ID);
             
@@ -345,9 +370,8 @@
             DropForeignKey("dbo.bbRequestGroups", "CreatedUser_ID", "dbo.Users");
             DropForeignKey("dbo.bbRequestGroups", "Tenant_ID", "dbo.bbTenants");
             DropForeignKey("dbo.bbRequestItems", "bbRequestGroup_ID", "dbo.bbRequestGroups");
-            DropForeignKey("dbo.bbRequestItems", "Vendor_ID", "dbo.bbListVendors");
+            DropForeignKey("dbo.bbRequestItems", "Vendor_ID", "dbo.bb_Asset_Vendor");
             DropForeignKey("dbo.bbRequestItems", "CreatedUser_ID", "dbo.Users");
-            DropForeignKey("dbo.bbRequestItems", "ItemType_ID", "dbo.bbListTypes");
             DropForeignKey("dbo.bbRequestItems", "Tenant_ID", "dbo.bbTenants");
             DropForeignKey("dbo.bbRequestItems", "RequestedUser_ID", "dbo.Users");
             DropForeignKey("dbo.bbRequestGroups", "RequestByUser_ID", "dbo.Users");
@@ -358,29 +382,30 @@
             DropForeignKey("dbo.bbOrderGroups", "CreatedUser_ID", "dbo.Users");
             DropForeignKey("dbo.bbOrderGroups", "Tenant_ID", "dbo.bbTenants");
             DropForeignKey("dbo.bbOrderItems", "bbOrderGroup_ID", "dbo.bbOrderGroups");
-            DropForeignKey("dbo.bbOrderItems", "Vendor_ID", "dbo.bbListVendors");
+            DropForeignKey("dbo.bbOrderItems", "Vendor_ID", "dbo.bb_Asset_Vendor");
             DropForeignKey("dbo.bbOrderItems", "CreatedUser_ID", "dbo.Users");
-            DropForeignKey("dbo.bbOrderItems", "ItemType_ID", "dbo.bbListTypes");
             DropForeignKey("dbo.bbOrderItems", "Tenant_ID", "dbo.bbTenants");
             DropForeignKey("dbo.bbLists", "CreatedUser_ID", "dbo.Users");
             DropForeignKey("dbo.bbLists", "Tenant_ID", "dbo.bbTenants");
+            DropForeignKey("dbo.bb_Asset_Model", "PreferredVendor_Id", "dbo.bb_Asset_Vendor");
+            DropForeignKey("dbo.bb_Asset_Model", "CreatedUser_ID", "dbo.Users");
+            DropForeignKey("dbo.bb_Asset_Model", "Tenant_ID", "dbo.bb_Asset_Make");
+            DropForeignKey("dbo.bb_Asset_Model", "Make_ID", "dbo.bb_Asset_Make");
+            DropForeignKey("dbo.bb_Asset_Model", "Category_ID", "dbo.bb_Asset_Category");
+            DropForeignKey("dbo.bb_Asset_Make", "CreatedUser_ID", "dbo.Users");
+            DropForeignKey("dbo.bb_Asset_Make", "Tenant_ID", "dbo.bbTenants");
             DropForeignKey("dbo.bbListCurrencies", "Tenant_ID", "dbo.bbTenants");
-            DropForeignKey("dbo.bbInventoryItems", "Vendor_ID", "dbo.bbListVendors");
-            DropForeignKey("dbo.bbListVendors", "CreatedUser_ID", "dbo.Users");
-            DropForeignKey("dbo.bbListVendors", "Tenant_ID", "dbo.bbTenants");
+            DropForeignKey("dbo.bb_Asset_Category", "CreatedUser_ID", "dbo.Users");
+            DropForeignKey("dbo.bb_Asset_Category", "Tenant_ID", "dbo.bbTenants");
+            DropForeignKey("dbo.bbInventoryItems", "Vendor_ID", "dbo.bb_Asset_Vendor");
+            DropForeignKey("dbo.bb_Asset_Vendor", "CreatedUser_ID", "dbo.Users");
+            DropForeignKey("dbo.bb_Asset_Vendor", "Tenant_ID", "dbo.bbTenants");
             DropForeignKey("dbo.bbInventoryItems", "CreatedUser_ID", "dbo.Users");
-            DropForeignKey("dbo.bbInventoryItems", "ItemType_ID", "dbo.bbListTypes");
-            DropForeignKey("dbo.bbListTypes", "CreatedUser_ID", "dbo.Users");
-            DropForeignKey("dbo.bbListTypes", "Tenant_ID", "dbo.bbTenants");
-            DropForeignKey("dbo.bbListTypes", "Category_ID", "dbo.bbListCategories");
-            DropForeignKey("dbo.bbListCategories", "CreatedUser_ID", "dbo.Users");
             DropForeignKey("dbo.Users", "UserPermission_Id", "dbo.UserPermissions");
             DropForeignKey("dbo.Users", "Tenant_ID", "dbo.bbTenants");
-            DropForeignKey("dbo.bbListCategories", "Tenant_ID", "dbo.bbTenants");
             DropForeignKey("dbo.bbInventoryItems", "Tenant_ID", "dbo.bbTenants");
             DropIndex("dbo.bbRequestItems", new[] { "bbRequestGroup_ID" });
             DropIndex("dbo.bbRequestItems", new[] { "Vendor_ID" });
-            DropIndex("dbo.bbRequestItems", new[] { "ItemType_ID" });
             DropIndex("dbo.bbRequestItems", new[] { "CreatedUser_ID" });
             DropIndex("dbo.bbRequestItems", new[] { "RequestedUser_ID" });
             DropIndex("dbo.bbRequestItems", new[] { "Tenant_ID" });
@@ -393,25 +418,27 @@
             DropIndex("dbo.bbOrderPayments", new[] { "OrderItems_ID" });
             DropIndex("dbo.bbOrderItems", new[] { "bbOrderGroup_ID" });
             DropIndex("dbo.bbOrderItems", new[] { "Vendor_ID" });
-            DropIndex("dbo.bbOrderItems", new[] { "ItemType_ID" });
             DropIndex("dbo.bbOrderItems", new[] { "CreatedUser_ID" });
             DropIndex("dbo.bbOrderItems", new[] { "Tenant_ID" });
             DropIndex("dbo.bbOrderGroups", new[] { "Tenant_ID" });
             DropIndex("dbo.bbOrderGroups", new[] { "CreatedUser_ID" });
             DropIndex("dbo.bbLists", new[] { "CreatedUser_ID" });
             DropIndex("dbo.bbLists", new[] { "Tenant_ID" });
+            DropIndex("dbo.bb_Asset_Model", new[] { "CreatedUser_ID" });
+            DropIndex("dbo.bb_Asset_Model", new[] { "PreferredVendor_Id" });
+            DropIndex("dbo.bb_Asset_Model", new[] { "Tenant_ID" });
+            DropIndex("dbo.bb_Asset_Model", new[] { "Category_ID" });
+            DropIndex("dbo.bb_Asset_Model", new[] { "Make_ID" });
+            DropIndex("dbo.bb_Asset_Make", new[] { "CreatedUser_ID" });
+            DropIndex("dbo.bb_Asset_Make", new[] { "Tenant_ID" });
             DropIndex("dbo.bbListCurrencies", new[] { "Tenant_ID" });
-            DropIndex("dbo.bbListVendors", new[] { "CreatedUser_ID" });
-            DropIndex("dbo.bbListVendors", new[] { "Tenant_ID" });
+            DropIndex("dbo.bb_Asset_Category", new[] { "CreatedUser_ID" });
+            DropIndex("dbo.bb_Asset_Category", new[] { "Tenant_ID" });
+            DropIndex("dbo.bb_Asset_Vendor", new[] { "CreatedUser_ID" });
+            DropIndex("dbo.bb_Asset_Vendor", new[] { "Tenant_ID" });
             DropIndex("dbo.Users", new[] { "Tenant_ID" });
             DropIndex("dbo.Users", new[] { "UserPermission_Id" });
-            DropIndex("dbo.bbListCategories", new[] { "CreatedUser_ID" });
-            DropIndex("dbo.bbListCategories", new[] { "Tenant_ID" });
-            DropIndex("dbo.bbListTypes", new[] { "CreatedUser_ID" });
-            DropIndex("dbo.bbListTypes", new[] { "Tenant_ID" });
-            DropIndex("dbo.bbListTypes", new[] { "Category_ID" });
             DropIndex("dbo.bbInventoryItems", new[] { "Vendor_ID" });
-            DropIndex("dbo.bbInventoryItems", new[] { "ItemType_ID" });
             DropIndex("dbo.bbInventoryItems", new[] { "CreatedUser_ID" });
             DropIndex("dbo.bbInventoryItems", new[] { "Tenant_ID" });
             DropTable("dbo.bbRequestItems");
@@ -420,12 +447,13 @@
             DropTable("dbo.bbOrderItems");
             DropTable("dbo.bbOrderGroups");
             DropTable("dbo.bbLists");
+            DropTable("dbo.bb_Asset_Model");
+            DropTable("dbo.bb_Asset_Make");
             DropTable("dbo.bbListCurrencies");
-            DropTable("dbo.bbListVendors");
+            DropTable("dbo.bb_Asset_Category");
+            DropTable("dbo.bb_Asset_Vendor");
             DropTable("dbo.UserPermissions");
             DropTable("dbo.Users");
-            DropTable("dbo.bbListCategories");
-            DropTable("dbo.bbListTypes");
             DropTable("dbo.bbTenants");
             DropTable("dbo.bbInventoryItems");
             DropTable("dbo.FW_Inventory");

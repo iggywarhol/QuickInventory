@@ -17,10 +17,13 @@ namespace SimpleInventory.Models
 
 
         public DbSet<bbList> Lists { get; set; }
-        public DbSet<bbListType> ListTypes { get; set; }
-        public DbSet<bbListCategory> ListCategories { get; set; }
+        public DbSet<bb_Asset_Category> ListCategories { get; set; }
+        public DbSet<bb_Asset_Vendor> ListVendors { get; set; }
+        public DbSet<bb_Asset_Make> ListMakes { get; set; }
+        public DbSet<bb_Asset_Model> ListModels { get; set; }
+
+
         public DbSet<bbListCurrency> ListCurrencys { get; set; }
-        public DbSet<bbListVendor> ListVendors { get; set; }
         public DbSet<bbOrderGroup> OrderGroups { get; set; }
         public DbSet<bbOrderItems> OrderItems { get; set; }
         public DbSet<bbOrderPayment> OrderPayments { get; set; }

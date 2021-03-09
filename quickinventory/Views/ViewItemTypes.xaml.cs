@@ -36,7 +36,7 @@ namespace SimpleInventory.Views
                 "items that belong to this category will be moved to the default category.", "Delete Item Category", MessageBoxButton.YesNoCancel);
             if (result == MessageBoxResult.Yes)
             {
-                (DataContext as ViewItemTypesViewModel)?.DeleteItem(ItemsGrid.SelectedValue as bbListType);
+              //  (DataContext as ViewItemTypesViewModel)?.DeleteItem(ItemsGrid.SelectedValue as bbListType);
             }
         }
     }

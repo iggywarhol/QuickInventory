@@ -13,9 +13,9 @@ namespace SimpleInventory.ViewModels
 {
     class ViewItemTypesViewModel : BaseViewModel, ICreatedEditedItemType
     {
-        private ObservableCollection<bbListType> _itemTypes;
+        //private ObservableCollection<bbListType> _itemTypes;
         private int _selectedItemTypeIndex;
-        private bbListType _selectedItem;
+        //private bbListType _selectedItem;
         private bool _isNonDefaultItemSelected;
         private bool _isItemSelected;
 
@@ -35,6 +35,8 @@ namespace SimpleInventory.ViewModels
             set { _selectedItemTypeIndex = value; NotifyPropertyChanged(); IsItemSelected = value != -1; }
         }
 
+
+        /*
         public bbListType SelectedItem
         {
             get { return _selectedItem; }
@@ -45,6 +47,7 @@ namespace SimpleInventory.ViewModels
                 RefreshCanDelete();
             }
         }
+        */
 
         public bool IsItemSelected
         {
@@ -79,20 +82,20 @@ namespace SimpleInventory.ViewModels
         }
         private void LoadEditItemCategoryScreen()
         {
-            PushViewModel(new CreateOrEditItemTypeViewModel(ViewModelChanger, this, SelectedItem) { CurrentUser = CurrentUser });
+           // PushViewModel(new CreateOrEditItemTypeViewModel(ViewModelChanger, this, SelectedItem) { CurrentUser = CurrentUser });
         }
 
-        public void DeleteItem(bbListType itemType)
-        {
+        //public void DeleteItem(bbListType itemType)
+        //{
             //if (itemType != null && !itemType.IsDefault && ItemTypes.Count != 1)
             //{
             //    itemType.Delete();
             //    ItemTypes.Remove(itemType);
             //}
-        }
+        //}
 
-        public void CreatedEditedItemType(bbListType itemType, bool wasCreated)
-        {
+        //public void CreatedEditedItemType(bbListType itemType, bool wasCreated)
+        //{
           //  if (itemType.IsDefault)
            // {
                // foreach (var type in ItemTypes)
@@ -100,12 +103,12 @@ namespace SimpleInventory.ViewModels
                //     type.IsDefault = type.ID == itemType.ID;
                // }
            // }
-            if (wasCreated)
-            {
+         //   if (wasCreated)
+         //   {
                //ItemTypes.Add(itemType);
-            }
-            RefreshCanDelete();
-        }
+         //   }
+         //   RefreshCanDelete();
+        //}
 
         private void RefreshCanDelete()
         {

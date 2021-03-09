@@ -18,7 +18,7 @@ namespace SimpleInventory.ViewModels
         private string _assetID;
         private int _selecteditemcatindex;
         private bbBaseGroup _currentItemBeingEdited;
-        private ObservableCollection<bbListType> _itemtypes;
+      //  private ObservableCollection<bbListType> _itemtypes;
         SimpleInventoryContext db = new SimpleInventoryContext();
         public CreateOrEditItemViewModel(IChangeViewModel viewModelChanger, ICreatedInventoryItem createdItemListener) : base(viewModelChanger)
         {
@@ -43,11 +43,11 @@ namespace SimpleInventory.ViewModels
             _inventoryItemID = item.ID;
         }
         #region Properties
-        public ObservableCollection<bbListType> ItemTypes
-        {
-            get { return _itemtypes; }
-            set { _itemtypes = value; NotifyPropertyChanged(); }
-        }
+       // public ObservableCollection<bbListType> ItemTypes
+       // {
+       //     get { return _itemtypes; }
+       //     set { _itemtypes = value; NotifyPropertyChanged(); }
+       // }
         public int SelectedCatIndex
         {
             get { return _selecteditemcatindex; }
