@@ -225,6 +225,7 @@
     <Compile Include="Migrations\DbContext.cs" />
     <Compile Include="Models\bbListCategory.cs" />
     <Compile Include="Common\bbBaseItem.cs" />
+    <Compile Include="Models\bbListMake.cs" />
     <Compile Include="Models\bbOrderItems.cs" />
     <Compile Include="Models\bbListVendor.cs" />
     <Compile Include="Models\bbOrderGroup.cs" />
