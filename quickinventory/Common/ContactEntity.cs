@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SimpleInventory.Common
 {
@@ -40,7 +39,7 @@ namespace SimpleInventory.Common
         //public PhoneNumber PhoneNumber { get; set; }
         //public List<PhoneNumberRelationship> OtherPhoneNumbers { get; set; } = new List<PhoneNumberRelationship>();
 
-        //public Address Address { get; set; }
+        public Address Address { get; set; }
         //public List<AddressRelationship> OtherAddresses { get; set; } = new List<AddressRelationship>();
         //public List<EmailLog> EmailLogs { get; set; } = new List<EmailLog>();
 

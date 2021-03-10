@@ -92,6 +92,16 @@
                         CompanyName = c.String(maxLength: 128),
                         EmailAddress = c.String(maxLength: 128),
                         EmailCC = c.String(maxLength: 128),
+                        Address_Line1 = c.String(),
+                        Address_Line2 = c.String(),
+                        Address_City = c.String(),
+                        Address_AdministrativeDivision = c.String(),
+                        Address_PostalCode = c.String(),
+                        Address_Country = c.String(),
+                        Address_TwoLetterISORegionName = c.String(),
+                        Address_ThreeLetterISORegionName = c.String(),
+                        Address_Longitude = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Address_Latitude = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.bbTenants", t => t.Tenant_ID)
