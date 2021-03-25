@@ -1,0 +1,5 @@
+﻿Add-Migration start
+
+Update-Database -verbose
+
+enable-migrations –EnableAutomaticMigration:$true 

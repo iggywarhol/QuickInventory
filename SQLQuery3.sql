@@ -1,4 +1,4 @@
-﻿INSERT INTO hs_hr_country(cou_code, [name], cou_name, iso3, numcode) 
+﻿INSERT INTO hs_hr_country(cou_code, name, cou_name, iso3, numcode) 
 VALUES ('AF', 'AFGHANISTAN', 'Afghanistan', 'AFG', 4),
     ('AL', 'ALBANIA', 'Albania', 'ALB', 8),
     ('DZ', 'ALGERIA', 'Algeria', 'DZA', 12),
@@ -400,7 +400,7 @@ INSERT INTO hs_hr_currency_type(code, currency_id, currency_name) VALUES (3, 'AE
     (170, 'ZWD', 'Zimbabwe Dollar'),
     (173, 'SAR', 'Saudi Arabia Riyal');
   
-SET IDENTITY_INSERT dbo.hs_hr_province OFF
+
 INSERT INTO hs_hr_province(id, province_name, province_code, cou_code) VALUES (1, 'Alaska', 'AK', 'US'),
     (2, 'Alabama', 'AL', 'US'),
     (3, 'American Samoa', 'AS', 'US'),
@@ -467,12 +467,6 @@ INSERT INTO hs_hr_province(id, province_name, province_code, cou_code) VALUES (1
     (64, 'Armed Forces Middle East', 'AE', 'US'),
     (65, 'Armed Forces Pacific', 'AP', 'US');
 
-
-/* SET IDENTITY_INSERT dbo.hs_hr_province OFF; */
-
-
-
-/* SET IDENTITY_INSERT test.ohrm_work_week ON  */
 INSERT INTO hs_hr_module VALUES ('MOD001','Admin','OrangeHRM','info@orangehrm.com','VER001','HR Admin'),
 								  ('MOD002','PIM','OrangeHRM','info@orangehrm.com','VER001','HR Functions'),
 								  ('MOD004','Report','OrangeHRM','info@orangehrm.com','VER001','Reporting'),
@@ -482,13 +476,7 @@ INSERT INTO hs_hr_module VALUES ('MOD001','Admin','OrangeHRM','info@orangehrm.co
  	 							('MOD008', 'Recruitment', 'OrangeHRM', 'info@orangehrm.com', 'VER001', 'Recruitment'),
  	 							('MOD009', 'Performance', 'OrangeHRM', 'info@orangehrm.com', 'VER001', 'Performance');
 
-
-/*
-SET IDENTITY_INSERT test.ohrm_work_week ON
 INSERT INTO ohrm_work_week VALUES (1, NULL, 0, 0, 0, 0, 0, 8, 8);
-*/
-
-/* SET IDENTITY_INSERT dbo.hs_hr_payperiod OFF */
 
 INSERT INTO hs_hr_payperiod(payperiod_code, payperiod_name) VALUES (1, 'Weekly'),
     (2, 'Bi Weekly'),
@@ -506,10 +494,10 @@ INSERT INTO hs_hr_config([key], value) VALUES ('ldap_server', ''),
     ('hsp_used_last_updated', '0000-00-00'),
     ('attendanceEmpEditSubmitted', 'No'),
     ('attendanceSupEditSubmitted', 'No'),
-    ('pim_show_deprecated_fields', '0'),
-    ('showSSN', '0'),
-    ('showSIN', '0'),
-    ('showTaxExemptions', '0'),
+    ('pim_show_deprecated_fields', 0),
+    ('showSSN', 0),
+    ('showSIN', 0),
+    ('showTaxExemptions', 0),
     ('timesheet_time_format', '1'),
     ('timesheet_period_set', 'No'),
     ('timesheet_period_and_start_date', '<TimesheetPeriod><PeriodType>Weekly</PeriodType><ClassName>WeeklyTimesheetPeriod</ClassName><StartDate>1</StartDate><Heading>Week</Heading></TimesheetPeriod>'),
@@ -521,17 +509,15 @@ INSERT INTO hs_hr_config([key], value) VALUES ('ldap_server', ''),
     ('leave.entitlement_consumption_algorithm', 'FIFOEntitlementConsumptionStrategy'),
     ('leave.work_schedule_implementation', 'BasicWorkSchedule'),
     ('themeName', 'default'),
-    ('leave.leavePeriodStatus','1'),
-    ('leave.include_pending_leave_in_balance', '1'),
+    ('leave.leavePeriodStatus',1),
+    ('leave.include_pending_leave_in_balance', 1),
     ('admin.default_workshift_start_time', '09:00'),
     ('admin.default_workshift_end_time', '17:00'),
-    ('report.mysql_group_concat_max_len', '2048'),
+    ('report.mysql_group_concat_max_len', 2048),
     ('email_config.sendmail_path', '/usr/sbin/sendmail -bs');
 
-SET IDENTITY_INSERT [dbo].ohrm_emp_reporting_method on;
 INSERT INTO ohrm_emp_reporting_method(reporting_method_id, reporting_method_name) VALUES(1, 'Direct'),
       (2, 'Indirect');
-SET IDENTITY_INSERT [dbo].ohrm_report off;
 
 
 INSERT INTO hs_hr_unique_id(last_id, table_name, field_name) VALUES
@@ -560,11 +546,11 @@ INSERT INTO hs_hr_unique_id(last_id, table_name, field_name) VALUES
     (0, 'ohrm_job_interview', 'id');
 
 INSERT INTO ohrm_workflow_state_machine(id, workflow,state,role,action,resulting_state, roles_to_notify, priority)  
-                            VALUES (1,'0','INITIAL','SYSTEM','7','NOT SUBMITTED', '', 0),
-                                   (2,'0','SUBMITTED','ADMIN','2','APPROVED', '', 0),
-                                   (3,'0','SUBMITTED','ADMIN','3','REJECTED', '', 0),
-                                   (4,'0','SUBMITTED','ADMIN','0','SUBMITTED', '', 0),
-                                   (5,'0','SUBMITTED','ADMIN','5','SUBMITTED', '', 0),
+                            VALUES ('1','0','INITIAL','SYSTEM','7','NOT SUBMITTED', '', 0),
+                                   ('2','0','SUBMITTED','ADMIN','2','APPROVED', '', 0),
+                                   ('3','0','SUBMITTED','ADMIN','3','REJECTED', '', 0),
+                                   ('4','0','SUBMITTED','ADMIN','0','SUBMITTED', '', 0),
+                                   ('5','0','SUBMITTED','ADMIN','5','SUBMITTED', '', 0),
                                    ('6','0','SUBMITTED','SUPERVISOR','2','APPROVED', '', 0),
                                    ('7','0','SUBMITTED','SUPERVISOR','3','REJECTED', '', 0),
                                    ('8','0','SUBMITTED','SUPERVISOR','5','SUBMITTED', '', 0),
@@ -781,18 +767,16 @@ INSERT INTO ohrm_report_group (report_group_id, name, core_sql) VALUES
 ORDER BY hs_hr_employee.emp_lastname
 ');
 
-SET IDENTITY_INSERT [dbo].ohrm_report off;
-INSERT INTO ohrm_report (report_id, [name], report_group_id, use_filter_field, type) VALUES (1, 'Project Report', 1, 1, null),
+INSERT INTO ohrm_report (report_id, name, report_group_id, use_filter_field, type) VALUES (1, 'Project Report', 1, 1, null),
     (2, 'Employee Report', 1, 1, null),
     (3, 'Project Activity Details', 1, 1, null),
     (4, 'Attendance Total Summary Report', 2, 0, null),
     (5, 'PIM Sample Report', 3, 1, 'PIM_DEFINED');
-SET IDENTITY_INSERT [dbo].ohrm_report on;
 
-INSERT INTO ohrm_filter_field (filter_field_id, report_group_id, [name], where_clause_part, filter_field_widget, condition_no, required) VALUES 
+INSERT INTO ohrm_filter_field (filter_field_id, report_group_id, name, where_clause_part, filter_field_widget, condition_no, required) VALUES 
     (1, 1, 'project_name', 'ohrm_project.project_id', 'ohrmWidgetProjectList', 2, 'true'),
-    (2, 1, 'activity_show_deleted', 'ohrm_project_activity.is_deleted', 'ohrmWidgetInputCheckbox', 2, '0'),
-    (3, 1, 'project_date_range', 'date', 'ohrmWidgetDateRange', 1, '0'),
+    (2, 1, 'activity_show_deleted', 'ohrm_project_activity.is_deleted', 'ohrmWidgetInputCheckbox', 2, 0),
+    (3, 1, 'project_date_range', 'date', 'ohrmWidgetDateRange', 1, 0),
     (4, 1, 'employee', 'hs_hr_employee.emp_number', 'ohrmReportWidgetEmployeeListAutoFill', 2, 'true'),
     (5, 1, 'activity_name', 'ohrm_project_activity.activity_id', 'ohrmWidgetProjectActivityList', 2, 'true'),
     (6, 1, 'project_name', 'ohrm_project.project_id', 'ohrmWidgetProjectListWithAllOption', 2, 'true'),
@@ -816,19 +800,19 @@ INSERT INTO ohrm_filter_field (filter_field_id, report_group_id, [name], where_c
 INSERT INTO ohrm_display_field_group(id, report_group_id, name, is_list) VALUES
     (1, 3, 'Personal', 0),
     (2, 3, 'Contact Details', 0),
-    (3, 3, 'Emergency Contacts', 1),
-    (4, 3, 'Dependents', 1),
-    (5, 3, 'Immigration', 1),
+    (3, 3, 'Emergency Contacts', true),
+    (4, 3, 'Dependents', true),
+    (5, 3, 'Immigration', true),
     (6, 3, 'Job', 0),
-    (7, 3, 'Salary', 1),
-    (8, 3, 'Subordinates', 1),
-    (9, 3, 'Supervisors', 1),
-    (10, 3, 'Work Experience', 1),
-    (11, 3, 'Education', 1),
-    (12, 3, 'Skills', 1),
-    (13, 3, 'Languages', 1),
-    (14, 3, 'License', 1),
-    (15, 3, 'Memberships', 1),
+    (7, 3, 'Salary', true),
+    (8, 3, 'Subordinates', true),
+    (9, 3, 'Supervisors', true),
+    (10, 3, 'Work Experience', true),
+    (11, 3, 'Education', true),
+    (12, 3, 'Skills', true),
+    (13, 3, 'Languages', true),
+    (14, 3, 'License', true),
+    (15, 3, 'Memberships', true),
     (16, 3, 'Custom Fields', 0);
 
 INSERT INTO ohrm_display_field (display_field_id, report_group_id, name, label, field_alias, is_sortable, sort_order, sort_field, element_type, element_property, width, is_exportable, text_alignment_style, is_value_list, display_field_group_id, default_value, is_encrypted, is_meta) VALUES
@@ -1082,13 +1066,10 @@ INSERT INTO ohrm_selected_group_field (group_field_id, summary_display_field_id,
                                                (2, 1, 3),
                                                (2, 2, 4);
 
-
-SET IDENTITY_INSERT [dbo].[ohrm_subunit] off;
-INSERT INTO ohrm_subunit (id,[name],unit_id,description,lft,rgt,level) VALUES (1, 'Organization', '', '', 1, 2, 0);
-SET IDENTITY_INSERT [dbo].[ohrm_subunit] ON;
+INSERT INTO ohrm_subunit VALUES (1, 'Organization', '', '', 1, 2, 0);
 
 
-INSERT INTO ohrm_emp_termination_reason (id,[name]) VALUES (1, 'Other'),
+INSERT INTO ohrm_emp_termination_reason VALUES (1, 'Other'),
 (2, 'Retired'),
 (3, 'Contract Not Renewed'),
 (4, 'Resigned - Company Requested'),
@@ -1629,7 +1610,6 @@ INSERT INTO ohrm_user_role_screen (user_role_id, screen_id, can_read, can_create
 (1, 102, 1, 1, 1, 1),
 (4, 102, 1, 1, 1, 1);
 
-SET IDENTITY_INSERT [dbo].ohrm_data_group off;
 INSERT INTO ohrm_data_group (id, name, description, can_read, can_create, can_update, can_delete) VALUES
 (1, 'personal_information', 'PIM - Personal Details', 1, NULL, 1, NULL),
 (2, 'personal_attachment', 'PIM - Personal Details - Attachments', 1, 1, 1, 1),
@@ -1691,7 +1671,6 @@ INSERT INTO ohrm_data_group (id, name, description, can_read, can_create, can_up
 (58, 'time_employee_timesheets', 'Time - Employee Timesheets', 1, 0, 0, 0),
 (59, 'leave_list', 'Leave - Leave List', 1, 0, 0, 0),
 (60, 'leave_list_comments', 'Leave - Leave List - Comments', 0, 1, 0, 0);
-SET IDENTITY_INSERT [dbo].ohrm_data_group on;
 
 INSERT INTO ohrm_user_role_data_group (user_role_id, data_group_id, can_read, can_create, can_update, can_delete, self) VALUES
 (1, 1, 1, NULL, 1, NULL, 0),
@@ -2007,7 +1986,7 @@ INSERT INTO ohrm_job_category (name) VALUES ('Officials and Managers'),
                                                 ('Craft Workers'),
                                                 ('Service Workers'),
                                                 ('Laborers and Helpers');
-SET IDENTITY_INSERT [dbo].ohrm_email off;
+
 INSERT INTO ohrm_email(id, name) VALUES 
     (1, 'leave.apply'),
     (2, 'leave.assign'),
@@ -2015,8 +1994,6 @@ INSERT INTO ohrm_email(id, name) VALUES
     (4, 'leave.cancel'),
     (5, 'leave.reject'),
     (6, 'leave.change');
-SET IDENTITY_INSERT [dbo].ohrm_email on;
-
 
 INSERT INTO ohrm_email_template(id, email_id, locale, performer_role, recipient_role,body, subject) VALUES 
     (1, 1, 'en_US', NULL, 'supervisor', 'orangehrmLeavePlugin/modules/leave/templates/mail/en_US/apply/leaveApplicationBody.txt', 'orangehrmLeavePlugin/modules/leave/templates/mail/en_US/apply/leaveApplicationSubject.txt'),
@@ -2582,7 +2559,7 @@ INSERT INTO hs_hr_config([key],value) VALUES
 ('beacon.activation_acceptance_status','off'),
 ('beacon.company_name',''),
 ('beacon.activiation_status','off'),
-('beacon.uuid','0'),
+('beacon.uuid',0),
 ('beacon.next_flash_time','0000-00-00'),
 ('beacon.lock','unlocked'),
 ('beacon.flash_period','120'),
@@ -2654,54 +2631,54 @@ INSERT INTO ohrm_screen ([name], module_id, action_url) VALUES
 SET @search_kpi_screen_id = (SELECT SCOPE_IDENTITY());
 
 DECLARE @my_reviews_screen_id int;
-INSERT INTO ohrm_screen ([name], module_id, action_url) VALUES  
+INSERT INTO ohrm_screen ('name', 'module_id', 'action_url') VALUES  
 ('My Reviews', @module_id, 'myPerformanceReview');  
 SET @my_reviews_screen_id = (SELECT SCOPE_IDENTITY());  
 
 DECLARE @add_review_screen_id int;
-INSERT INTO ohrm_screen ([name], module_id, action_url) VALUES  
+INSERT INTO ohrm_screen ('name', 'module_id', 'action_url') VALUES  
 ('Add Review', @module_id, 'saveReview');  
 SET @add_review_screen_id = (SELECT SCOPE_IDENTITY());
 
 DECLARE @review_evaluate_screen_id int;
-INSERT INTO ohrm_screen ([name], module_id, action_url) VALUES  
+INSERT INTO ohrm_screen ('name', 'module_id', 'action_url') VALUES  
 ('Review Evaluate', @module_id, 'reviewEvaluate');  
 SET @review_evaluate_screen_id = (SELECT SCOPE_IDENTITY());
 
 DECLARE @review_evaluate_admin_screen_id int;
-INSERT INTO ohrm_screen ([name], [module_id], [action_url]) VALUES  
+INSERT INTO ohrm_screen ('name', 'module_id', 'action_url') VALUES  
 ('Review Evaluate By Admin', @module_id, 'reviewEvaluateByAdmin');  
 SET @review_evaluate_admin_screen_id = (SELECT SCOPE_IDENTITY());
 
 DECLARE @search_evaluate_performance_screen_id int;
-INSERT INTO ohrm_screen ([name], [module_id], [action_url]) VALUES  
+INSERT INTO ohrm_screen ('name', 'module_id', 'action_url') VALUES  
 ('Search Evaluate Performance', @module_id, 'searchEvaluatePerformancReview');  
 SET @search_evaluate_performance_screen_id = (SELECT SCOPE_IDENTITY());
 
 
 
 DECLARE @search_performance_review_screen_id int;
-INSERT INTO ohrm_screen ([name], module_id, action_url) VALUES  
+INSERT INTO ohrm_screen ('name', 'module_id', 'action_url') VALUES  
 ('Search Performance Review', @module_id, 'searchPerformancReview');  
 SET @search_performance_review_screen_id = (SELECT SCOPE_IDENTITY());
 
 DECLARE @performance_menu_id int;
-INSERT INTO ohrm_menu_item (menu_title, screen_id, parent_id, level, order_hint, url_extras, status) VALUES  
+INSERT INTO ohrm_menu_item ('menu_title', 'screen_id', 'parent_id', 'level', 'order_hint', 'url_extras', 'status') VALUES  
 ('Performance', NULL, NULL, 1, 700, '', 1);
-SET @performance_menu_id = (SELECT 'id' FROM ohrm_menu_item WHERE menu_title = 'Performance' AND level = 1); 
+SET @performance_menu_id = (SELECT 'id' FROM ohrm_menu_item WHERE 'menu_title' = 'Performance' AND 'level' = 1); 
 
 DECLARE @ConfigureKPI_screen_id int;
-INSERT INTO ohrm_menu_item (menu_title, screen_id, parent_id, level, order_hint, url_extras, status) VALUES  
+INSERT INTO ohrm_menu_item ('menu_title', 'screen_id', 'parent_id', 'level', 'order_hint', 'url_extras', 'status') VALUES  
 ('Configure', NULL, @performance_menu_id, 2, 100, '', 1);
 SET @ConfigureKPI_screen_id = (SELECT SCOPE_IDENTITY());
 
 DECLARE @Manage_Reviews_screen_id int;
-INSERT INTO ohrm_menu_item (menu_title, screen_id, parent_id, level, order_hint, url_extras, status) VALUES  
+INSERT INTO ohrm_menu_item ('menu_title', 'screen_id', 'parent_id', 'level', 'order_hint', 'url_extras', 'status') VALUES  
 ('Manage Reviews', NULL, @performance_menu_id, 2, 200, '', 1);
 SET @Manage_Reviews_screen_id = (SELECT SCOPE_IDENTITY());
 
 
-INSERT INTO ohrm_menu_item (menu_title, screen_id, parent_id, level, order_hint, url_extras, status) VALUES  
+INSERT INTO ohrm_menu_item ('menu_title', 'screen_id', 'parent_id', 'level', 'order_hint', 'url_extras', 'status') VALUES  
 ('KPIs', @search_kpi_screen_id, @ConfigureKPI_screen_id, 3, 100, '', 1),
 ('Manage Reviews', @search_performance_review_screen_id, @Manage_Reviews_screen_id, 3, 100, '', 1),
 ('My Reviews', @my_reviews_screen_id, @Manage_Reviews_screen_id, 3, 200, '', 1),
@@ -2732,11 +2709,12 @@ SET @performance_module_id = (SELECT 'id' FROM ohrm_module WHERE name = 'perform
 
 -- Admin Section. Manage Trackers.
 DECLARE @manage_performance_trackers_screen_id int;
-INSERT INTO ohrm_screen ([name], module_id, action_url) VALUES ( 'Manage_Trackers', @performance_module_id, 'addPerformanceTracker');
+INSERT INTO ohrm_screen ('name', 'module_id', 'action_url') VALUES
+( 'Manage_Trackers', @performance_module_id, 'addPerformanceTracker');
 SET @manage_performance_trackers_screen_id =  (SELECT SCOPE_IDENTITY());
 
 SET @performance_menu_id = (SELECT id FROM ohrm_menu_item where menu_title = 'Performance');
-INSERT INTO ohrm_menu_item (menu_title, screen_id, parent_id, level, order_hint, url_extras, status) VALUES
+INSERT INTO ohrm_menu_item ('menu_title', 'screen_id', 'parent_id', 'level', 'order_hint', 'url_extras', 'status') VALUES
 ('Trackers', @manage_performance_trackers_screen_id, @ConfigureKPI_screen_id, 3, 200, NULL, 1);
 
 INSERT INTO ohrm_user_role_screen (user_role_id, screen_id, can_read, can_create, can_update, can_delete) VALUES
@@ -2745,11 +2723,11 @@ INSERT INTO ohrm_user_role_screen (user_role_id, screen_id, can_read, can_create
 
 -- Admin/ ESS Section Employee Trackers.
 DECLARE @employee_trackers_screen_id int;
-INSERT INTO ohrm_screen ([name], module_id, action_url) VALUES
+INSERT INTO ohrm_screen ('name', 'module_id', 'action_url') VALUES
 ( 'Employee_Trackers', @performance_module_id, 'viewEmployeePerformanceTrackerList');
 SET @employee_trackers_screen_id =  (SELECT SCOPE_IDENTITY());
 
-INSERT INTO ohrm_menu_item (menu_title, screen_id, parent_id, level, order_hint, url_extras, status) VALUES
+INSERT INTO ohrm_menu_item ('menu_title', 'screen_id', 'parent_id', 'level', 'order_hint', 'url_extras', 'status') VALUES
 ('Employee Trackers', @employee_trackers_screen_id, @performance_menu_id, 2, 800, NULL, 1);
 
 INSERT INTO ohrm_user_role_screen (user_role_id, screen_id, can_read, can_create, can_update, can_delete) VALUES
@@ -2758,11 +2736,11 @@ INSERT INTO ohrm_user_role_screen (user_role_id, screen_id, can_read, can_create
 
 -- ESS secetion. My Trackers.
 DECLARE @my_trackers_screen_id int;
-INSERT INTO ohrm_screen (name, module_id, action_url) VALUES
+INSERT INTO ohrm_screen ('name', 'module_id', 'action_url') VALUES
 ( 'My_Trackers', @performance_module_id, 'viewMyPerformanceTrackerList');
 SET @my_trackers_screen_id =  (SELECT SCOPE_IDENTITY());
 
-INSERT INTO ohrm_menu_item (menu_title, screen_id, parent_id, level, order_hint, url_extras, status) VALUES
+INSERT INTO ohrm_menu_item ('menu_title', 'screen_id', 'parent_id', 'level', 'order_hint', 'url_extras', 'status') VALUES
 ('My Trackers', @my_trackers_screen_id, @performance_menu_id, 2, 700, NULL, 1);
 
 INSERT INTO ohrm_user_role_screen (user_role_id, screen_id, can_read, can_create, can_update, can_delete) VALUES
@@ -2771,7 +2749,7 @@ INSERT INTO ohrm_user_role_screen (user_role_id, screen_id, can_read, can_create
 
 -- Tracker Logs. (No menu item)
 DECLARE @employee_tracker_logs_screen_id int;
-INSERT INTO ohrm_screen ([name], module_id, action_url) VALUES
+INSERT INTO ohrm_screen ('name', 'module_id', 'action_url') VALUES
 ( 'Employee_Tracker_Logs', @performance_module_id, 'addPerformanceTrackerLog');
 SET @employee_tracker_logs_screen_id =  (SELECT SCOPE_IDENTITY());
 
@@ -2780,18 +2758,18 @@ INSERT INTO ohrm_user_role_screen (user_role_id, screen_id, can_read, can_create
 (@ess_user_role, @employee_tracker_logs_screen_id, 1, 0, 0, 0);
 
 -- Install CorporateDirectory --
-INSERT INTO ohrm_module ([name], status) VALUES ('directory', 1);  
+INSERT INTO ohrm_module ('name', 'status') VALUES ('directory', 1);  
 
 SET @module_id = (SELECT SCOPE_IDENTITY());  
   
-INSERT INTO ohrm_screen ([name], module_id, action_url) VALUES  
+INSERT INTO ohrm_screen ('name', 'module_id', 'action_url') VALUES  
 ('Directory', @module_id, 'viewDirectory'); 
 
 
 DECLARE @directory_configuration_screen_id int;
 SET @directory_configuration_screen_id = (SELECT SCOPE_IDENTITY());
   
-INSERT INTO ohrm_menu_item (menu_title, screen_id, parent_id, [level], order_hint, url_extras, status) VALUES  
+INSERT INTO ohrm_menu_item ('menu_title', 'screen_id', 'parent_id', 'level', 'order_hint', 'url_extras', 'status') VALUES  
 ('Directory', @directory_configuration_screen_id, null, 1, 1000, '/reset/1', 1);  
   
 SET @admin_role_id = (SELECT 'id' FROM ohrm_user_role WHERE 'name' = 'Admin'); 
@@ -2805,9 +2783,9 @@ INSERT INTO ohrm_user_role_screen (user_role_id, screen_id, can_read, can_create
 
 -- install open id 
 
-INSERT INTO hs_hr_config ([key] ,value) VALUES ('domain.name',  'localhost');
+INSERT INTO hs_hr_config ('key' ,'value') VALUES ('domain.name',  'localhost');
 
-INSERT INTO ohrm_screen ( [name], module_id, action_url) VALUES ( 'Manage OpenId', 2, 'openIdProvider');
+INSERT INTO ohrm_screen ( 'name', 'module_id', 'action_url') VALUES ( 'Manage OpenId', 2, 'openIdProvider');
 
 DECLARE @opnid_screen_id int;
 DECLARE @admin_menu_id int;
@@ -2817,48 +2795,48 @@ DECLARE @max_order int;
 
 SET @opnid_screen_id = (SELECT SCOPE_IDENTITY());
 
-SET @admin_menu_id = (SELECT 'id' FROM ohrm_menu_item WHERE menu_title = 'Admin' AND level = 1);
-SET @configuration_id = (SELECT 'id' FROM ohrm_menu_item WHERE menu_title = 'Configuration' AND 'level' = 2 AND parent_id = @admin_menu_id);
+SET @admin_menu_id = (SELECT 'id' FROM ohrm_menu_item WHERE 'menu_title' = 'Admin' AND 'level' = 1);
+SET @configuration_id = (SELECT 'id' FROM ohrm_menu_item WHERE 'menu_title' = 'Configuration' AND 'level' = 2 AND parent_id = @admin_menu_id);
 SET @max_order = (SELECT MAX('order_hint') FROM ohrm_menu_item WHERE parent_id = @configuration_id);
 
-INSERT INTO ohrm_menu_item ( menu_title, screen_id, parent_id, level, order_hint, url_extras, status) VALUES 
+INSERT INTO ohrm_menu_item ( 'menu_title', 'screen_id', 'parent_id', 'level', 'order_hint', 'url_extras', 'status') VALUES 
 ('Social Media Authentication', @opnid_screen_id, @configuration_id, 3, @max_order+100, NULL, 1);
 
 INSERT INTO ohrm_user_role_screen (user_role_id, screen_id, can_read, can_create, can_update, can_delete) VALUES  
 (1, @opnid_screen_id, 1, 1, 1, 0);
 
-INSERT INTO hs_hr_config ([key], value) VALUES  
+INSERT INTO hs_hr_config ('key', 'value') VALUES  
 ('openId.provider.added', 'on');
 
 
 DECLARE @oauth_client_screen_id int;
-INSERT INTO ohrm_screen ( name, module_id, action_url) VALUES ( 'Register OAuth Client', 2, 'registerOAuthClient');
+INSERT INTO ohrm_screen ( 'name', 'module_id', 'action_url') VALUES ( 'Register OAuth Client', 2, 'registerOAuthClient');
 SET @oauth_client_screen_id = (SELECT SCOPE_IDENTITY());
 
-SET @admin_menu_id = (SELECT 'id' FROM ohrm_menu_item WHERE menu_title = 'Admin' AND 'level' = 1);
-SET @configuration_id = (SELECT 'id' FROM ohrm_menu_item WHERE menu_title = 'Configuration' AND 'level' = 2 AND parent_id = @admin_menu_id);
+SET @admin_menu_id = (SELECT 'id' FROM ohrm_menu_item WHERE 'menu_title' = 'Admin' AND 'level' = 1);
+SET @configuration_id = (SELECT 'id' FROM ohrm_menu_item WHERE 'menu_title' = 'Configuration' AND 'level' = 2 AND parent_id = @admin_menu_id);
 SET @max_order = (SELECT MAX('order_hint') FROM ohrm_menu_item WHERE parent_id = @configuration_id);
 
-INSERT INTO ohrm_menu_item ( menu_title, screen_id, parent_id, level, order_hint, url_extras, status) VALUES
+INSERT INTO ohrm_menu_item ( 'menu_title', 'screen_id', 'parent_id', 'level', 'order_hint', 'url_extras', 'status') VALUES
 ('Register OAuth Client', @oauth_client_screen_id, @configuration_id, 3, @max_order+100, NULL, 1);
 
 INSERT INTO ohrm_user_role_screen (user_role_id, screen_id, can_read, can_create, can_update, can_delete) VALUES
 (1, @oauth_client_screen_id, 1, 1, 1, 0);
 
-INSERT INTO hs_hr_config ([key], value) VALUES
+INSERT INTO hs_hr_config ('key', 'value') VALUES
 ('open_source_integrations','<xml>
 <integrations>
 </integrations>
 </xml>
 ');
 
-INSERT INTO hs_hr_config ([key], value) VALUES
+INSERT INTO hs_hr_config ('key', 'value') VALUES
 ('authentication.status', 'Enable'),
 ('authentication.enforce_password_strength', 'on'),
 ('authentication.default_required_password_strength', 'medium');
 
 -- Maintenance module Sql querise.
-INSERT INTO ohrm_module ([name], status) VALUES
+INSERT INTO ohrm_module (name, status) VALUES
 ('maintenance', '1');
 set @module_id = (SELECT id FROM ohrm_module WHERE name = 'maintenance');
 set @admin_role_id = (SELECT id FROM ohrm_user_role WHERE name = 'Admin');
@@ -2936,7 +2914,7 @@ INSERT INTO ohrm_user_role_screen (user_role_id,screen_id, can_read, can_create,
 (@ESS_role_id, @MP_home_screen_id, 1,0,0,0),
 (@Supervisor_role_id, @MP_home_screen_id, 1,0,0,0);
 
-INSERT INTO hs_hr_config ([key], value) VALUES
+INSERT INTO hs_hr_config ('key', 'value') VALUES
 ('base_url', 'https://marketplace.orangehrm.com');
 
 -- Add data group permissions
@@ -2955,7 +2933,7 @@ INSERT INTO ohrm_user_role_data_group (user_role_id, data_group_id, can_read, ca
 (@Supervisor_role_id, @data_group_id, 1, 0, 0, 0, 0);
 
 -- Buzz plugin
-INSERT INTO hs_hr_config([key], value) VALUES ('buzz_refresh_time','60000'),
+INSERT INTO hs_hr_config('key', 'value') VALUES ('buzz_refresh_time','60000'),
         ('buzz_share_count','10'),
         ('buzz_initial_comments','2'),
         ('buzz_viewmore_comment','5'),
@@ -2970,52 +2948,52 @@ INSERT INTO hs_hr_config([key], value) VALUES ('buzz_refresh_time','60000'),
 --
 -- Inserting News feed Module to The Database
 --
-INSERT INTO ohrm_module( [name], status) VALUES ('buzz','1');
+INSERT INTO ohrm_module( 'name', 'status') VALUES ('buzz','1');
 
 set @admin_role_id = (SELECT id FROM ohrm_user_role WHERE name = 'Admin');
 set @ESS_role_id = (SELECT id FROM ohrm_user_role WHERE name = 'ESS');
 set @Supervisor_role_id = (SELECT id FROM ohrm_user_role WHERE name = 'Supervisor');
 
-INSERT INTO ohrm_data_group ([name], description, can_read, can_create, can_update, can_delete) VALUES
+INSERT INTO ohrm_data_group ('name', 'description', 'can_read', 'can_create', 'can_update', 'can_delete') VALUES
 ('buzz_link', 'buzz link permition ', 1, 1, 1, 0);
 
 DECLARE @buzz_link_data_group_id int;
 SET @buzz_link_data_group_id = (SELECT id FROM ohrm_data_group WHERE 'name' = 'buzz_link');
 
-INSERT INTO ohrm_user_role_data_group (user_role_id, data_group_id, can_read, can_create, can_update, can_delete, self) VALUES
+INSERT INTO ohrm_user_role_data_group ('user_role_id', 'data_group_id', 'can_read', 'can_create', 'can_update', 'can_delete', 'self') VALUES
 (@ESS_role_id, @buzz_link_data_group_id, 1, 1, 1, 0, 0),
 (@Supervisor_role_id, @buzz_link_data_group_id, 1, 1, 1, 0, 0);
 
-INSERT INTO ohrm_data_group ([name], description, can_read, can_create, can_update, can_delete) VALUES
+INSERT INTO ohrm_data_group ('name', 'description', 'can_read', 'can_create', 'can_update', 'can_delete') VALUES
 ('buzz_link_admin', 'buzz link permition for admin', 1, 1, 1, 0);
 
 
 DECLARE @buzz_link_admin_data_group_id int;
 SET @buzz_link_admin_data_group_id = (SELECT id FROM ohrm_data_group WHERE 'name' = 'buzz_link_admin');
 
-INSERT INTO ohrm_user_role_data_group (user_role_id, data_group_id, can_read, can_create, can_update, can_delete, self) VALUES
+INSERT INTO ohrm_user_role_data_group ('user_role_id', 'data_group_id', 'can_read', 'can_create', 'can_update', 'can_delete', 'self') VALUES
 (@admin_role_id, @buzz_link_admin_data_group_id, 1, 1, 1, 0, 0);
 
-INSERT INTO hs_hr_config([key], value) VALUES ('buzz_comment_text_lenth','250');
+INSERT INTO hs_hr_config('key', 'value') VALUES ('buzz_comment_text_lenth','250');
 
 -- Add Buzz As A menu Item
 DECLARE @buzz_module_id int;
 SET @buzz_module_id = (SELECT 'id' FROM ohrm_module WHERE 'name'='buzz');
-INSERT INTO ohrm_screen([name], module_id, action_url) VALUES ('Buzz',@buzz_module_id,'viewBuzz');
+INSERT INTO ohrm_screen('name', 'module_id', 'action_url') VALUES ('Buzz',@buzz_module_id,'viewBuzz');
 DECLARE @screen_id int;
 SET @screen_id=(SELECT 'id' FROM ohrm_screen WHERE 'name'='Buzz');
-INSERT INTO ohrm_menu_item(menu_title, screen_id, parent_id, level, order_hint, status) VALUES ('Buzz', @screen_id, NULL, '1', '1500', 1);
+INSERT INTO ohrm_menu_item('menu_title', 'screen_id', 'parent_id', 'level', 'order_hint', 'status') VALUES ('Buzz', @screen_id, NULL, '1', '1500', 1);
 
-INSERT INTO ohrm_user_role_screen(user_role_id, screen_id, can_read, can_create, can_update, can_delete) VALUES (@admin_role_id,@screen_id,1,1,1,1);
-INSERT INTO ohrm_user_role_screen(user_role_id, screen_id, can_read, can_create, can_update, can_delete) VALUES (@ESS_role_id,@screen_id,1,1,1,1);
-INSERT INTO ohrm_user_role_screen(user_role_id, screen_id, can_read, can_create, can_update, can_delete) VALUES (@Supervisor_role_id,@screen_id,1,1,1,1);
+INSERT INTO ohrm_user_role_screen('user_role_id', 'screen_id', 'can_read', 'can_create', 'can_update', 'can_delete') VALUES (@admin_role_id,@screen_id,1,1,1,1);
+INSERT INTO ohrm_user_role_screen('user_role_id', 'screen_id', 'can_read', 'can_create', 'can_update', 'can_delete') VALUES (@ESS_role_id,@screen_id,1,1,1,1);
+INSERT INTO ohrm_user_role_screen('user_role_id', 'screen_id', 'can_read', 'can_create', 'can_update', 'can_delete') VALUES (@Supervisor_role_id,@screen_id,1,1,1,1);
 
 -- i.e. -4 weeks, -2 days, -1 day, -1 month
 -- https://www.php.net/manual/en/datetime.formats.relative.php
-INSERT INTO hs_hr_config([key], value) VALUES ('buzz_max_notification_period','-1 week');
+INSERT INTO hs_hr_config('key', 'value') VALUES ('buzz_max_notification_period','-1 week');
 
-INSERT INTO ohrm_oauth_scope (scope, is_default) VALUES ('admin', '0'), ('user', '0');
-INSERT INTO ohrm_oauth_client(client_id, client_secret, redirect_uri, grant_types, scope) VALUES
+INSERT INTO ohrm_oauth_scope ('scope', 'is_default') VALUES ('admin', '0'), ('user', '0');
+INSERT INTO ohrm_oauth_client('client_id', 'client_secret', 'redirect_uri', 'grant_types', 'scope') VALUES
 ('orangehrm_mobile_app','','','password refresh_token','user');
 
 SET @admin_role_id = (SELECT 'id' FROM ohrm_user_role WHERE 'name' = 'Admin');
@@ -3023,7 +3001,7 @@ SET @admin_role_id = (SELECT 'id' FROM ohrm_user_role WHERE 'name' = 'Admin');
 DECLARE @admin_module_id int;
 SET @admin_module_id = (SELECT 'id' FROM ohrm_module WHERE 'name'='admin');
 
-INSERT INTO ohrm_screen (name, module_id, action_url) VALUES
+INSERT INTO ohrm_screen ('name', 'module_id', 'action_url') VALUES
 ('Language Packages', @admin_module_id, 'languagePackage'),
 ('Language Customization', @admin_module_id, 'languageCustomization'),
 ('Save Language Customization', @admin_module_id, 'saveLanguageCustomization'),
@@ -3038,11 +3016,11 @@ SET @language_customization_screen_id=(SELECT 'id' FROM ohrm_screen WHERE 'name'
 SET @save_language_customization_screen_id=(SELECT 'id' FROM ohrm_screen WHERE 'name'='Save Language Customization');
 SET @export_language_package_screen_id=(SELECT 'id' FROM ohrm_screen WHERE 'name'='Export Language Package');
 
-SET @admin_menu_id = (SELECT 'id' FROM ohrm_menu_item WHERE menu_title = 'Admin' AND 'level' = 1);
+SET @admin_menu_id = (SELECT 'id' FROM ohrm_menu_item WHERE 'menu_title' = 'Admin' AND 'level' = 1);
 DECLARE @configuration_menu_id int;
 SET @configuration_menu_id = (SELECT id FROM ohrm_menu_item where menu_title = 'Configuration' AND 'parent_id' = @admin_menu_id);
 
-INSERT INTO ohrm_menu_item (menu_title, screen_id, parent_id, level, order_hint, url_extras, status) VALUES  
+INSERT INTO ohrm_menu_item ('menu_title', 'screen_id', 'parent_id', 'level', 'order_hint', 'url_extras', 'status') VALUES  
 ('Language Packages', @language_packages_screen_id, @configuration_menu_id, 3, 350, '', 1);
 
 INSERT INTO ohrm_user_role_screen (user_role_id, screen_id, can_read, can_create, can_update, can_delete) VALUES  
@@ -3052,7 +3030,7 @@ INSERT INTO ohrm_user_role_screen (user_role_id, screen_id, can_read, can_create
 (@admin_role_id, @export_language_package_screen_id, 1, 1, 1, 0);
 
 
-INSERT INTO ohrm_i18n_language ([name], code, added) VALUES
+INSERT INTO ohrm_i18n_language ('name', 'code', 'added') VALUES
 ('Chinese (Simplified, China) - 中文（简体，中国）', 'zh_Hans_CN', 1),
 ('Chinese (Traditional, Taiwan) - 中文（繁體，台灣）', 'zh_Hant_TW', 1),
 ('Dutch - Nederlands', 'nl', 1),
@@ -3062,10 +3040,10 @@ INSERT INTO ohrm_i18n_language ([name], code, added) VALUES
 ('Spanish - Español', 'es', 1),
 ('Spanish (Costa Rica) - Español (Costa Rica)', 'es_CR', 1);
 
-INSERT INTO ohrm_i18n_language ([name], code, enabled) VALUES
+INSERT INTO ohrm_i18n_language ('name', 'code', 'enabled') VALUES
 ('test - TEST', 'zz_ZZ', 0);
 
-INSERT INTO ohrm_i18n_language ([name], code) VALUES
+INSERT INTO ohrm_i18n_language ('name', 'code') VALUES
 ('Afrikaans (Namibia) - Afrikaans (Namibië)', 'af_NA'),
 ('Afrikaans (South Africa) - Afrikaans (Suid-Afrika)', 'af_ZA'),
 ('Aghem (Cameroon)', 'agq_CM'),
@@ -3278,7 +3256,7 @@ INSERT INTO ohrm_i18n_language ([name], code) VALUES
 ('French (Comoros) - Français (Comores)', 'fr_KM'),
 ('French (Congo - Brazzaville) (fr-CG) - Français (Congo-Brazzaville) (fr-CG)', 'fr_CG'),
 ('French (Congo - Kinshasa) - Français (Congo-Kinshasa)', 'fr_CD'),
-('French (Côte d''Ivoire) - Français (Côte d''Ivoire)', 'fr_CI'),
+("French (Côte d’Ivoire) - Français (Côte d'Ivoire)", 'fr_CI'),
 ('French (Djibouti) - Français (Djibouti)', 'fr_DJ'),
 ('French (Equatorial Guinea) - Français (Guinée équatoriale)', 'fr_GQ'),
 ('French (France) - France francaise)', 'fr_FR'),
@@ -3542,9 +3520,9 @@ INSERT INTO ohrm_i18n_language ([name], code) VALUES
 ('Urdu (India) - اردو (بھارت)', 'ur_IN'),
 ('Urdu (Pakistan) - اردو (پاکستان)', 'ur_PK'),
 ('Uyghur (China) - ئۇيغۇر (جۇڭگو)', 'ug_CN'),
-('Uzbek (Arabic, Afghanistan) - O''zbekiston (arab, Afg''oniston)', 'uz_Arab_AF'),
-('Uzbek (Cyrillic, Uzbekistan) - O''zbek (kirill, O''zbekiston)', 'uz_Cyrl_UZ'),
-('Uzbek (Latin, Uzbekistan) - O''zbek (Lotin, O''zbekiston)', 'uz_Latn_UZ'),
+("Uzbek (Arabic, Afghanistan) - O'zbekiston (arab, Afg'oniston)", 'uz_Arab_AF'),
+("Uzbek (Cyrillic, Uzbekistan) - O'zbek (kirill, O'zbekiston)", 'uz_Cyrl_UZ'),
+("Uzbek (Latin, Uzbekistan) - O'zbek (Lotin, O'zbekiston)", 'uz_Latn_UZ'),
 ('Vai (Latin, Liberia)', 'vai_Latn_LR'),
 ('Vai (Vai, Liberia)', 'vai_Vaii_LR'),
 ('Vietnamese (Vietnam) - Việt (Việt Nam)', 'vi_VN'),
@@ -3559,7 +3537,7 @@ INSERT INTO ohrm_i18n_language ([name], code) VALUES
 ('Zarma (Niger)', 'dje_NE'),
 ('Zulu (South Africa) - Zulu (South Africa)', 'zu_ZA');
 
-INSERT INTO ohrm_i18n_group ([name], title) VALUES
+INSERT INTO ohrm_i18n_group ('name', 'title') VALUES
 ('general', 'General'),
 ('admin', 'Admin'),
 ('pim', 'PIM'),
