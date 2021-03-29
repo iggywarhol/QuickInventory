@@ -14,12 +14,12 @@ namespace SimpleInventory.ViewModels
 {
     class ManageUsersViewModel : BaseViewModel, ICreatedUser
     {
-        private User _selectedUser;
+        private bb_accesscontrol_User _selectedUser;
         SimpleInventoryContext simpleInventoryContext = new SimpleInventoryContext();
         public ManageUsersViewModel(IChangeViewModel viewModelChanger) : base(viewModelChanger)
         {
         }
-        public User SelectedUser
+        public bb_accesscontrol_User SelectedUser
         {
             get { return _selectedUser; }
             set { _selectedUser = value; NotifyPropertyChanged(); NotifyPropertyChanged(nameof(CanEditDeleteCurrentUser)); }
@@ -52,12 +52,12 @@ namespace SimpleInventory.ViewModels
         {
             PushViewModel(new CreateOrEditUserViewModel(ViewModelChanger, SelectedUser, this) { CurrentUser = CurrentUser });
         }
-        public void CreatedUser(User user)
+        public void CreatedUser(bb_accesscontrol_User user)
         {
             simpleInventoryContext.Users.Add(user);
             simpleInventoryContext.SaveChanges();
         }
-        public void DeleteUser(User user)
+        public void DeleteUser(bb_accesscontrol_User user)
         {
             simpleInventoryContext.Users.Attach(user);
             simpleInventoryContext.Users.Remove(user);

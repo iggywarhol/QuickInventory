@@ -11,7 +11,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SimpleInventory.Models
 {
-    public class UserPermission
+    public class bb_accesscontrol_Permissions
     {
         [Key]
         public long ID { get; set; }

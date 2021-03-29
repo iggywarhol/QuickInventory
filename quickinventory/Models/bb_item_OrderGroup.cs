@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 //
 namespace SimpleInventory.Models
 {
-    public class bbOrderGroup : bbBaseGroup
+    public class bb_item_OrderGroup : bbBaseGroup
     {
         public string OrderName { get; set; }
-        public ICollection<bbOrderItems> Orders { get; set; }
+        public ICollection<bb_item_OrderSingle> Orders { get; set; }
     }
 }

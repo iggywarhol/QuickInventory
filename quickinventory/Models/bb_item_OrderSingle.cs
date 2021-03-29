@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations;
 //
 namespace SimpleInventory.Models
 {
-    public class bbOrderItems : bbBaseItem
+    public class bb_item_OrderSingle : bbBaseItem
     {
         [ForeignKey("Tenant")]
         public long? Tenant_ID { get; set; }
-        public bbTenant Tenant { get; set; }
+        public bb_accesscontrol_Tenant Tenant { get; set; }
     }
 }

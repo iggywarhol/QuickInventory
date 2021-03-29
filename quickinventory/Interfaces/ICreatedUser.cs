@@ -4,6 +4,6 @@ namespace SimpleInventory.Interfaces
 {
     interface ICreatedUser
     {
-        void CreatedUser(User user);
+        void CreatedUser(bb_accesscontrol_User user);
     }
 }

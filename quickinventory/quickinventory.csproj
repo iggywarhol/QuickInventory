@@ -241,24 +241,24 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Common\bbBaseList.cs" />
-    <Compile Include="Models\bbInventoryItems.cs" />
-    <Compile Include="Models\bbList.cs" />
-    <Compile Include="Models\bbListCurrency.cs" />
+    <Compile Include="Models\bb_item_Inventory.cs" />
+    <Compile Include="Models\bb_Asset_List.cs" />
+    <Compile Include="Models\bb_common_ListCurrency.cs" />
     <Compile Include="Migrations\DbContext.cs" />
     <Compile Include="Models\bb_Asset_Category.cs" />
     <Compile Include="Common\bbBaseItem.cs" />
     <Compile Include="Models\bb_Asset_Make.cs" />
     <Compile Include="Models\bb_Asset_Model.cs" />
-    <Compile Include="Models\bbOrderItems.cs" />
+    <Compile Include="Models\bb_item_OrderSingle.cs" />
     <Compile Include="Models\bb_Asset_Vendor.cs" />
-    <Compile Include="Models\bbOrderGroup.cs" />
-    <Compile Include="Models\bbOrderPayment.cs" />
-    <Compile Include="Models\bbRequestGroup.cs" />
-    <Compile Include="Models\bbRequestItems.cs" />
-    <Compile Include="Models\bbTenant.cs" />
+    <Compile Include="Models\bb_item_OrderGroup.cs" />
+    <Compile Include="Models\bb_item_OrderPayment.cs" />
+    <Compile Include="Models\bb_item_RequestGroup.cs" />
+    <Compile Include="Models\bb_item_RequestSingle.cs" />
+    <Compile Include="Models\bb_accesscontrol_Tenant.cs" />
     <Compile Include="Common\bbBaseGroup.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserPermissions.cs" />
+    <Compile Include="Models\bb_accesscontrol_User.cs" />
+    <Compile Include="Models\bb_accesscontrol_Permissions.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\CreateOrEditItemTypeViewModel.cs" />
     <Compile Include="ViewModels\CreateOrEditItemViewModel.cs" />
@@ -416,8 +416,19 @@
   <ItemGroup>
     <Resource Include="Documents\TextFile1.txt" />
     <Resource Include="Documents\OrangHRMp1.txt" />
-    <Content Include="Database\orangehrm_4_6.mdf">
+    <Content Include="app_data\orangehrm_4_6.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app_data\orangehrm_4_6_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>orangehrm_4_6.mdf</DependentUpon>
+    </Content>
+    <Content Include="app_data\quickinventory.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app_data\quickinventory_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>quickinventory.mdf</DependentUpon>
     </Content>
     <Content Include="Documents\orangeHRM_0.sql" />
     <Content Include="Documents\orangeHRM_1_tables.sql" />

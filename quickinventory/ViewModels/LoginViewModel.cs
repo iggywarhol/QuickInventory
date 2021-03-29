@@ -59,9 +59,9 @@ namespace SimpleInventory.ViewModels
             else
             {
                 string s = Utilities.SecureStringToString(Password);
-                string s1 = User.HashPassword("changeme");
-                List<User> uu = simpleInventoryContext.Users.ToList();
-                User user = uu.Find(x => x.Username == Username && x.PasswordHash == s1);
+                string s1 = bb_accesscontrol_User.HashPassword("changeme");
+                List<bb_accesscontrol_User> uu = simpleInventoryContext.Users.ToList();
+                bb_accesscontrol_User user = uu.Find(x => x.Username == Username && x.PasswordHash == s1);
                 if (user != null)
                 {
                     Username = "";

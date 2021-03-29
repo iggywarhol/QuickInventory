@@ -13,25 +13,25 @@ namespace SimpleInventory.Models
         public SimpleInventoryContext() : base("InventorySd")
         {
         }
-        public DbSet<bbInventoryItems> InventoryItems { get; set; }
+        public DbSet<bb_item_Inventory> InventoryItems { get; set; }
 
 
-        public DbSet<bbList> Lists { get; set; }
+        public DbSet<bb_Asset_List> Lists { get; set; }
         public DbSet<bb_Asset_Category> ListCategories { get; set; }
         public DbSet<bb_Asset_Vendor> ListVendors { get; set; }
         public DbSet<bb_Asset_Make> ListMakes { get; set; }
         public DbSet<bb_Asset_Model> ListModels { get; set; }
 
 
-        public DbSet<bbListCurrency> ListCurrencys { get; set; }
-        public DbSet<bbOrderGroup> OrderGroups { get; set; }
-        public DbSet<bbOrderItems> OrderItems { get; set; }
-        public DbSet<bbOrderPayment> OrderPayments { get; set; }
-        public DbSet<bbRequestGroup> RequestGroups { get; set; }
-        public DbSet<bbRequestItems> RequestItems { get; set; }
-        public DbSet<bbTenant> Tenants { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserPermission> UserPermissions { get; set; }
+        public DbSet<bb_common_ListCurrency> ListCurrencys { get; set; }
+        public DbSet<bb_item_OrderGroup> OrderGroups { get; set; }
+        public DbSet<bb_item_OrderSingle> OrderItems { get; set; }
+        public DbSet<bb_item_OrderPayment> OrderPayments { get; set; }
+        public DbSet<bb_item_RequestGroup> RequestGroups { get; set; }
+        public DbSet<bb_item_RequestSingle> RequestItems { get; set; }
+        public DbSet<bb_accesscontrol_Tenant> Tenants { get; set; }
+        public DbSet<bb_accesscontrol_User> Users { get; set; }
+        public DbSet<bb_accesscontrol_Permissions> UserPermissions { get; set; }
         //
         //
         public DbSet<fw_ConfigItem> fwInventory { get; set; }

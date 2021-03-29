@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 //
 namespace SimpleInventory.Models
 {
-   public class bbOrderPayment
+   public class bb_item_OrderPayment
     {
         [Key]
         public int ID { get; set; }
@@ -17,9 +17,9 @@ namespace SimpleInventory.Models
         //
         [ForeignKey("OrderItems")]
         public long OrderItems_ID { get; set; }
-        public bbOrderItems OrderItems { get; set; }
+        public bb_item_OrderSingle OrderItems { get; set; }
         [ForeignKey("Tenant")]
         public long Tenant_ID { get; set; }
-        public bbTenant Tenant { get; set; }
+        public bb_accesscontrol_Tenant Tenant { get; set; }
     }
 }

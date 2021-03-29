@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 //
 namespace SimpleInventory.Models
 {
-    public class bbListCurrency
+    public class bb_common_ListCurrency
     {
         [Key]
         public int ID { get; set; }
@@ -20,7 +20,7 @@ namespace SimpleInventory.Models
         public System.DateTime CreatedDate { get; set; }
         [ForeignKey("Tenant")]
         public long Tenant_ID { get; set; }
-        public bbTenant Tenant { get; set; }
+        public bb_accesscontrol_Tenant Tenant { get; set; }
         /*
         public static List<Currency> LoadCurrencies(string whereClause = "", List<Tuple<string, string>> whereParams = null)
         {

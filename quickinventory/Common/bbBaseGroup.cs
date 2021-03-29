@@ -10,10 +10,10 @@ namespace SimpleInventory.Models
         public System.DateTime CreatedDate { get; set; } = System.DateTime.Now;
         [ForeignKey("User")]
         public long? CreatedUser_ID { get; set; } = 1;
-        public User User { get; set; }
+        public bb_accesscontrol_User User { get; set; }
         [ForeignKey("Tenant")]
         public long? Tenant_ID { get; set; } = 1;
-        public bbTenant Tenant { get; set; }
+        public bb_accesscontrol_Tenant Tenant { get; set; }
         public string Name { get; set; }
     }
 }

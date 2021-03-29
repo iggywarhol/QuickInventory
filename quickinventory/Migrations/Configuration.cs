@@ -23,29 +23,29 @@ namespace SimpleInventory.Migrations
             //
             // Tenants
             //
-            IList<bbTenant> tenant = new List<bbTenant>();
-            tenant.Add(new bbTenant() { CreatedDate = DateTime.Now, ID = 1, Company = "GLOBAL ADMIN" });
-            tenant.Add(new bbTenant() { CreatedDate = DateTime.Now, ID = 1, Company = "BadBeta" });
-            tenant.Add(new bbTenant() { CreatedDate = DateTime.Now, ID = 2, Company = "CRI" });
-            tenant.Add(new bbTenant() { CreatedDate = DateTime.Now, ID = 3, Company = "Fluor" });
+            IList<bb_accesscontrol_Tenant> tenant = new List<bb_accesscontrol_Tenant>();
+            tenant.Add(new bb_accesscontrol_Tenant() { CreatedDate = DateTime.Now, ID = 1, Company = "GLOBAL ADMIN" });
+            tenant.Add(new bb_accesscontrol_Tenant() { CreatedDate = DateTime.Now, ID = 1, Company = "BadBeta" });
+            tenant.Add(new bb_accesscontrol_Tenant() { CreatedDate = DateTime.Now, ID = 2, Company = "CRI" });
+            tenant.Add(new bb_accesscontrol_Tenant() { CreatedDate = DateTime.Now, ID = 3, Company = "Fluor" });
             context.Tenants.AddRange(tenant);
             context.SaveChanges();
             //
             // ListCurrencys
             //
-            IList<bbListCurrency> cur = new List<bbListCurrency>();
-            cur.Add(new bbListCurrency() { Tenant_ID = 1, CreatedDate = DateTime.Now, Name = "US Dollar", Abbreviation = "USD", Symbol = "$", ConversionRateToUSD = 1, IsDefaultCurrency = true }); ;
-            cur.Add(new bbListCurrency() { Tenant_ID = 1, CreatedDate = DateTime.Now, Name = "Cambodian Riel", Abbreviation = "KHR", Symbol = "៛", ConversionRateToUSD = 4050, IsDefaultCurrency = false });
+            IList<bb_common_ListCurrency> cur = new List<bb_common_ListCurrency>();
+            cur.Add(new bb_common_ListCurrency() { Tenant_ID = 1, CreatedDate = DateTime.Now, Name = "US Dollar", Abbreviation = "USD", Symbol = "$", ConversionRateToUSD = 1, IsDefaultCurrency = true }); ;
+            cur.Add(new bb_common_ListCurrency() { Tenant_ID = 1, CreatedDate = DateTime.Now, Name = "Cambodian Riel", Abbreviation = "KHR", Symbol = "៛", ConversionRateToUSD = 4050, IsDefaultCurrency = false });
             context.ListCurrencys.AddRange(cur);
             context.SaveChanges();
             //
             // UserPermissions
             //
-            IList<UserPermission> up = new List<UserPermission>();
-            up.Add(new UserPermission() { CreatedDate = DateTime.Now, UserID = 1 });
-            up.Add(new UserPermission() { CreatedDate = DateTime.Now, UserID = 2 });
-            up.Add(new UserPermission() { CreatedDate = DateTime.Now, UserID = 3 });
-            up.Add(new UserPermission() { CreatedDate = DateTime.Now, UserID = 4 });
+            IList<bb_accesscontrol_Permissions> up = new List<bb_accesscontrol_Permissions>();
+            up.Add(new bb_accesscontrol_Permissions() { CreatedDate = DateTime.Now, UserID = 1 });
+            up.Add(new bb_accesscontrol_Permissions() { CreatedDate = DateTime.Now, UserID = 2 });
+            up.Add(new bb_accesscontrol_Permissions() { CreatedDate = DateTime.Now, UserID = 3 });
+            up.Add(new bb_accesscontrol_Permissions() { CreatedDate = DateTime.Now, UserID = 4 });
             context.UserPermissions.AddRange(up);
             context.SaveChanges();
             //
@@ -70,7 +70,7 @@ namespace SimpleInventory.Migrations
 
 
 
-            IList<User> usr = new List<User>();
+            IList<bb_accesscontrol_User> usr = new List<bb_accesscontrol_User>();
             //User ux = new User();
             //ux.Address.City;
             //Address ax = new Address();
@@ -78,19 +78,19 @@ namespace SimpleInventory.Migrations
             //Address = ax
 
 
-            usr.Add(new User()
+            usr.Add(new bb_accesscontrol_User()
             {
                 ID = 1,
                 UserPermission_Id = 1,
                 CreatedDate = DateTime.Now,
                 Name = "Administrator",
                 Username = "admin",
-                PasswordHash = User.HashPassword("changeme"),
+                PasswordHash = bb_accesscontrol_User.HashPassword("changeme"),
             });
-            usr.Add(new User() { ID = 2, UserPermission_Id = 1, CreatedDate = DateTime.Now, Name = "Scott Devitt", Username = "s.devitt", PasswordHash = User.HashPassword("changeme") });
-            usr.Add(new User() { ID = 3, UserPermission_Id = 1, CreatedDate = DateTime.Now, Name = "Joanna Devitt", Username = "j.devitt", PasswordHash = User.HashPassword("changeme") });
-            usr.Add(new User() { ID = 4, UserPermission_Id = 1, CreatedDate = DateTime.Now, Name = "Temp 1", Username = "temp1", PasswordHash = User.HashPassword("changeme") });
-            usr.Add(new User() { ID = 5, UserPermission_Id = 1, CreatedDate = DateTime.Now, Name = "IT Hold", Username = "IT Hold", PasswordHash = User.HashPassword("changeme") });
+            usr.Add(new bb_accesscontrol_User() { ID = 2, UserPermission_Id = 1, CreatedDate = DateTime.Now, Name = "Scott Devitt", Username = "s.devitt", PasswordHash = bb_accesscontrol_User.HashPassword("changeme") });
+            usr.Add(new bb_accesscontrol_User() { ID = 3, UserPermission_Id = 1, CreatedDate = DateTime.Now, Name = "Joanna Devitt", Username = "j.devitt", PasswordHash = bb_accesscontrol_User.HashPassword("changeme") });
+            usr.Add(new bb_accesscontrol_User() { ID = 4, UserPermission_Id = 1, CreatedDate = DateTime.Now, Name = "Temp 1", Username = "temp1", PasswordHash = bb_accesscontrol_User.HashPassword("changeme") });
+            usr.Add(new bb_accesscontrol_User() { ID = 5, UserPermission_Id = 1, CreatedDate = DateTime.Now, Name = "IT Hold", Username = "IT Hold", PasswordHash = bb_accesscontrol_User.HashPassword("changeme") });
             context.Users.AddRange(usr);
             context.SaveChanges();
             //

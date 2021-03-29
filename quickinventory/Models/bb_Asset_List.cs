@@ -3,13 +3,16 @@ using System.ComponentModel.DataAnnotations;
 //
 namespace SimpleInventory.Models
 {
-    public class bbInventoryItems : bbBaseItem
+    public enum ListTypeEnum
     {
-        [MaxLength(100)]
-        public string AssetID { get; set; }
+        Make = 1,
+        Model = 1
+    }
+    public class bb_Asset_List : bbBaseList
+    {
+        public ListTypeEnum Type { get; set; }
         [ForeignKey("Tenant")]
         public long? Tenant_ID { get; set; }
-        public bbTenant Tenant { get; set; }
-
+        public bb_accesscontrol_Tenant Tenant { get; set; }
     }
 }

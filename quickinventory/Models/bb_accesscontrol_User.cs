@@ -14,7 +14,7 @@ using SimpleInventory.Helpers;
 namespace SimpleInventory.Models
 {
     [Table("Users")]
-    public class User : PersonEntity
+    public class bb_accesscontrol_User : PersonEntity
     {
 
 
@@ -42,10 +42,10 @@ namespace SimpleInventory.Models
         public string PasswordHash { get; set; }
         [ForeignKey("UserPermission")]
         public long UserPermission_Id { get; set; }
-        public UserPermission UserPermission { get; set; }
+        public bb_accesscontrol_Permissions UserPermission { get; set; }
         [ForeignKey("Tenant")]
         public long? Tenant_ID { get; set; }
-        public bbTenant Tenant { get; set; }
+        public bb_accesscontrol_Tenant Tenant { get; set; }
         [Required]
         public System.DateTime CreatedDate { get; set; }
         public static string HashPassword(string password)

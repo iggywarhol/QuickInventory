@@ -15,7 +15,7 @@ namespace SimpleInventory.ViewModels
     class CreateOrEditUserViewModel : BaseViewModel
     {
         private bool _isCreating;
-        private User _user;
+        private bb_accesscontrol_User _user;
         private SecureString _password;
         private SecureString _confirmPassword;
 
@@ -32,8 +32,8 @@ namespace SimpleInventory.ViewModels
         public CreateOrEditUserViewModel(IChangeViewModel viewModelChanger, ICreatedUser createdUserCallback) : base(viewModelChanger)
         {
             _isCreating = true;
-            _user = new User();
-            _user.UserPermission = new UserPermission();
+            _user = new bb_accesscontrol_User();
+            _user.UserPermission = new bb_accesscontrol_Permissions();
             ScreenTitle = "Add User";
             PasswordTitle = "Password";
             ConfirmPasswordTitle = "Confirm Password";
@@ -42,9 +42,9 @@ namespace SimpleInventory.ViewModels
             _createdUserCallback = createdUserCallback;
         }
 
-        public CreateOrEditUserViewModel(IChangeViewModel viewModelChanger, User userToEdit, ICreatedUser createdUserCallback) : base(viewModelChanger)
+        public CreateOrEditUserViewModel(IChangeViewModel viewModelChanger, bb_accesscontrol_User userToEdit, ICreatedUser createdUserCallback) : base(viewModelChanger)
         {
-            IQueryable<UserPermission> rdperm = simpleInventoryContext.UserPermissions.Where(e => e.UserID == userToEdit.UserPermission_Id);
+            IQueryable<bb_accesscontrol_Permissions> rdperm = simpleInventoryContext.UserPermissions.Where(e => e.UserID == userToEdit.UserPermission_Id);
             //var l = x.ToList();
             _isCreating = false;
             _user = userToEdit;
@@ -57,7 +57,7 @@ namespace SimpleInventory.ViewModels
             _createdUserCallback = createdUserCallback;
         }
 
-        public User User
+        public bb_accesscontrol_User User
         {
             get { return _user; }
             set { _user = value; NotifyPropertyChanged(); }

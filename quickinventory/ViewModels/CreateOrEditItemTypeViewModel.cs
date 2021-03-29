@@ -21,16 +21,16 @@ namespace SimpleInventory.ViewModels
         private string _name;
         private string _description;
         private int _manufacturerSelectedIndex = 0;
-        private ObservableCollection<bbList> _manufactureritems;
+        private ObservableCollection<bb_Asset_List> _manufactureritems;
         private string _model;
         private int _categoryselectedindex = 0;
-        private ObservableCollection<bbList> _categorylist;
+        private ObservableCollection<bb_Asset_List> _categorylist;
         private ICreatedEditedItemType _createdEditedItemType;
        // private bbListType _itemBeingEdited;
         //Groups groupM;
         //Groups groupC;
-        List<bbList> _itemsM;
-        List<bbList> _itemsC;
+        List<bb_Asset_List> _itemsM;
+        List<bb_Asset_List> _itemsC;
         SimpleInventoryContext db = new SimpleInventoryContext();
         public CreateOrEditItemTypeViewModel(IChangeViewModel viewModelChanger, ICreatedEditedItemType createdItemType) : base(viewModelChanger)
         {
@@ -94,7 +94,7 @@ namespace SimpleInventory.ViewModels
             get { return _description; }
             set { _description = value; NotifyPropertyChanged(); }
         }
-        public ObservableCollection<bbList> ManufacturerList
+        public ObservableCollection<bb_Asset_List> ManufacturerList
         {
             get { return _manufactureritems; }
             set { _manufactureritems = value; NotifyPropertyChanged(); }
@@ -104,7 +104,7 @@ namespace SimpleInventory.ViewModels
             get { return _manufacturerSelectedIndex; }
             set { _manufacturerSelectedIndex = value; NotifyPropertyChanged(); }
         }
-        public ObservableCollection<bbList> CategoryList
+        public ObservableCollection<bb_Asset_List> CategoryList
         {
             get { return _categorylist; }
             set { _categorylist = value; NotifyPropertyChanged(); }

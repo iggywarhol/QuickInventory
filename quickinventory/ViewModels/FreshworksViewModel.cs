@@ -34,7 +34,7 @@ namespace SimpleInventory.ViewModels
         List<fw_ConfigItem> pagelist = null;
         //
         //
-        public FreshworksViewModel(IChangeViewModel viewModelChanger, User userToEdit, ICreatedUser createdUserCallback) : base(viewModelChanger)
+        public FreshworksViewModel(IChangeViewModel viewModelChanger, bb_accesscontrol_User userToEdit, ICreatedUser createdUserCallback) : base(viewModelChanger)
         {
             _items = new ObservableCollection<fw_ConfigItem>(db.fwInventory);
         }

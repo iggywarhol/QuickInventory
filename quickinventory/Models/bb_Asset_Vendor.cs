@@ -7,7 +7,7 @@ namespace SimpleInventory.Models
     {
         [ForeignKey("Tenant")]
         public long? Tenant_ID { get; set; }
-        public bbTenant Tenant { get; set; }
+        public bb_accesscontrol_Tenant Tenant { get; set; }
         //public Address  Address { get; set; }
     }
 }

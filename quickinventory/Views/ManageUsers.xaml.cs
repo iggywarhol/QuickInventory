@@ -37,7 +37,7 @@ namespace SimpleInventory.Views
             var result = MessageBox.Show("Are you sure you want to delete this user?", "Delete User", MessageBoxButton.YesNoCancel);
             if (result == MessageBoxResult.Yes)
             {
-                 (DataContext as ManageUsersViewModel)?.DeleteUser(UsersGrid.SelectedValue as User);
+                 (DataContext as ManageUsersViewModel)?.DeleteUser(UsersGrid.SelectedValue as bb_accesscontrol_User);
             }
         }
     }

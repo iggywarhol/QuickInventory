@@ -13,7 +13,7 @@ namespace SimpleInventory.ViewModels
     {
         IChangeViewModel _viewModelChanger;
 
-        User _currentUser;
+        bb_accesscontrol_User _currentUser;
 
         public BaseViewModel(IChangeViewModel viewModelChanger)
         {
@@ -26,7 +26,7 @@ namespace SimpleInventory.ViewModels
             set { _viewModelChanger = value; }
         }
 
-        public User CurrentUser
+        public bb_accesscontrol_User CurrentUser
         {
             get { return _currentUser; }
             set { _currentUser = value; NotifyPropertyChanged(); }

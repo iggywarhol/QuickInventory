@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 //
 namespace SimpleInventory.Models
 {
-    public class bbTenant
+    public class bb_accesscontrol_Tenant
     {
         [Key]
         public long ID { get; set; }
