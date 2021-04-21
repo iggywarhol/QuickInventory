@@ -19,8 +19,8 @@ namespace SimpleInventory.Models
         public bool Default { get; set; } = false;
         [Required]
         public System.DateTime CreatedDate { get; set; }
-        [ForeignKey("User")]
-        public long? CreatedUser_ID { get; set; }
-        public bb_accesscontrol_User User { get; set; }
+        //[ForeignKey("User")]
+        //public long? CreatedUser_ID { get; set; }
+        //public bb_accesscontrol_User User { get; set; }
     }
 }

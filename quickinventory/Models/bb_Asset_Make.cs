@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using SimpleInventory.Common;
+//BadBetaSoftware.Quick.
 //
 namespace SimpleInventory.Models
 {

@@ -1,11 +1,6 @@
-﻿using SimpleInventory.Helpers;
-using SimpleInventory.Interfaces;
+﻿using SimpleInventory.Interfaces;
 using SimpleInventory.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BadBetaSoftware.Quick.Common.Helpers;
 
 namespace SimpleInventory.ViewModels
 {

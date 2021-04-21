@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 //
-using SimpleInventory.Helpers;
+using BadBetaSoftware.Quick.Common;
+using BadBetaSoftware.Quick.Common.Helpers;
 using SimpleInventory.Interfaces;
 using SimpleInventory.Models;
 //

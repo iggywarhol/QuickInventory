@@ -1,6 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 //
+using BadBetaSoftware.Quick.Common;
+using BadBetaSoftware.Quick.Common.Helpers;
+//
 namespace SimpleInventory.Models
 {
     public class bb_item_RequestSingle : bbBaseItem

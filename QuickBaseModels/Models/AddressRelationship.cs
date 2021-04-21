@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 //
-namespace SimpleInventory.Common
+namespace BadBetaSoftware.Quick.Common
 {
     //[Table("EvAddresses")]
     public class AddressRelationship //: Entity<Guid>

@@ -1,21 +1,16 @@
 ﻿using PdfSharp.Drawing;
 using PdfSharp.Pdf;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
-using SimpleInventory.Models;
 
-namespace SimpleInventory.Helpers
+namespace BadBetaSoftware.Quick.Common.Helpers
 {
     // class for generating a PDF of X number of barcodes via PDFSharp and BarcodeLib
-    class BarcodePDFGenerator
+    public class BarcodePDFGenerator
     {
         public BarcodePDFGenerator()
         {

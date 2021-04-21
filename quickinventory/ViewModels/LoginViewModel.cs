@@ -1,15 +1,13 @@
-﻿using SimpleInventory.Helpers;
-using SimpleInventory.Interfaces;
+﻿using SimpleInventory.Interfaces;
 using SimpleInventory.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-
+//
+using BadBetaSoftware.Quick.Common;
+using BadBetaSoftware.Quick.Common.Helpers;
+//
 namespace SimpleInventory.ViewModels
 {
     class LoginViewModel : BaseViewModel

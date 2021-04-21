@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace SimpleInventory.Helpers
+namespace BadBetaSoftware.Quick.Common.Helpers
 {
     // https://gist.github.com/schuster-rainer/2648922 with some modifications
     public class RelayCommand<T> : ICommand

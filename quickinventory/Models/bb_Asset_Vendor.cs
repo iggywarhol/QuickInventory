@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using SimpleInventory.Common;
+//
+using BadBetaSoftware.Quick.Common;
+using BadBetaSoftware.Quick.Common.Helpers;
+//
 //
 namespace SimpleInventory.Models
 {

@@ -1,7 +1,7 @@
 ﻿using PhoneNumbers;
-using SimpleInventory.Helpers;
+using BadBetaSoftware.Quick.Common.Helpers;
 //
-namespace SimpleInventory.Common
+namespace BadBetaSoftware.Quick.Common
 {
     public class PhoneNumber : ValueObject<PhoneNumber>
     {

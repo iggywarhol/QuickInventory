@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 //
-using SimpleInventory.Helpers;
 using SimpleInventory.Interfaces;
 using SimpleInventory.Models;
+//
+using BadBetaSoftware.Quick.Common;
+using BadBetaSoftware.Quick.Common.Helpers;
 //
 namespace SimpleInventory.ViewModels
 {

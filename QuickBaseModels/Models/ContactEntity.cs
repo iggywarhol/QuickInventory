@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace SimpleInventory.Common
+namespace BadBetaSoftware.Quick.Common
 {
     /// <summary>
     /// Represents an entity that has contact information.

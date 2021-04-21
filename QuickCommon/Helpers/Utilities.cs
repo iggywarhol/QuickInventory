@@ -1,16 +1,11 @@
-﻿using SimpleInventory.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimpleInventory.Helpers
+//
+namespace BadBetaSoftware.Quick.Common.Helpers
 {
-    class Utilities
+    public class Utilities
     {
         public static bool InDesignMode()
         {
@@ -37,6 +32,7 @@ namespace SimpleInventory.Helpers
             return "dddd, d MMMM, yyyy";
         }
 
+        /*
         public static decimal ConvertAmount(decimal amount, bb_common_ListCurrency initialCurrency, bb_common_ListCurrency toCurrency)
         {
             if (initialCurrency.ConversionRateToUSD == 1)
@@ -49,6 +45,7 @@ namespace SimpleInventory.Helpers
                 return amount / initialCurrency.ConversionRateToUSD * toCurrency.ConversionRateToUSD;
             }
         }
+        */
 
         // https://stackoverflow.com/a/819705
         // I don't care _that_ much about this string being in RAM for a short time. :)

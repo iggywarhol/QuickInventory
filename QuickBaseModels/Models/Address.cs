@@ -2,12 +2,10 @@
 using System.Linq;
 using System.Globalization;
 using Bogus;
-using Bogus.Extensions;
-using SimpleInventory.Helpers;
-
-namespace SimpleInventory.Common
+using BadBetaSoftware.Quick.Common.Helpers;
+//
+namespace BadBetaSoftware.Quick.Common
 {
-
     /*
     FullAuditedEntity<Guid> , IMustHaveEvent
     namespace CustomReg.RegistrationEvents
@@ -18,7 +16,6 @@ namespace SimpleInventory.Common
         }
     }
     */
-
     public class Address : ValueObject<Address>
     {
         public string Line1 { get; private set; }

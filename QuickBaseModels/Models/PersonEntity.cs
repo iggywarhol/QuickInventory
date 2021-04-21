@@ -2,7 +2,7 @@
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 //
-namespace SimpleInventory.Common
+namespace BadBetaSoftware.Quick.Common
 {
     public abstract class PersonEntity : ContactEntity
     {
@@ -12,6 +12,9 @@ namespace SimpleInventory.Common
         public const int CredentialsMaxLength = 12;
         public const int TitleMaxLength = 128;
         //
+        [Display(Name = "First")]
+        [DataType(DataType.Text)]
+        [Required]
         [StringLength(FirstNameMaxLength)]
         public string FirstName { get; set; }
         [StringLength(LastNameMaxLength)]

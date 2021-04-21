@@ -1,33 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 //
-using SimpleInventory.Common;
-using SimpleInventory.Helpers;
+using BadBetaSoftware.Quick.Common;
 //
 namespace SimpleInventory.Models
 {
     [Table("Users")]
     public class bb_accesscontrol_User : PersonEntity
     {
-
-
         //  public const int ClientIdMaxLength = 128;
         //  public const int CompanyNameMaxLength = 128;
         //  public const int EmailAddressMaxLength = 128;
-
         //  public const int FirstNameMaxLength = 50;
         //  public const int LastNameMaxLength = 50;
         //  public const int PrefixMaxLength = 8;
         //  public const int CredentialsMaxLength = 12;
         //  public const int TitleMaxLength = 128;
-
         [Key]
         public long ID { get; set; }
         [MaxLength(100)]

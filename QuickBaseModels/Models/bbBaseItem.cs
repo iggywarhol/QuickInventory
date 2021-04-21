@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 //
-namespace SimpleInventory.Models
+namespace BadBetaSoftware.Quick.Common
 {
     public class bbBaseItem
     {
@@ -9,9 +9,9 @@ namespace SimpleInventory.Models
         public long ID { get; set; }
         [Required]
         public System.DateTime CreatedDate { get; set; }
-        [ForeignKey("User")]
-        public long? CreatedUser_ID { get; set; }
-        public bb_accesscontrol_User User { get; set; }
+     //   [ForeignKey("User")]
+     //   public long? CreatedUser_ID { get; set; }
+     //   public bb_accesscontrol_User User { get; set; }
         //
         //
         //[ForeignKey("Type")]
@@ -22,8 +22,8 @@ namespace SimpleInventory.Models
         public double Cost { get; set; }
         public double Tax { get; set; } = 0;
         public double Shipping { get; set; } = 0;
-        [ForeignKey("Vendor")]
-        public long? Vendor_ID { get; set; }
-        public bb_Asset_Vendor Vendor { get; set; }
+      //  [ForeignKey("Vendor")]
+      //  public long? Vendor_ID { get; set; }
+      //  public bb_Asset_Vendor Vendor { get; set; }
     }
 }

@@ -2,12 +2,9 @@
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 //
 using SimpleInventory.Models;
-using SimpleInventory.Common;
+//using SimpleInventory.Common;
 //
 namespace SimpleInventory.Migrations
 {

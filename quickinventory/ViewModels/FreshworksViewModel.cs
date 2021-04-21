@@ -12,7 +12,10 @@ using System.Data.Entity;
 using Newtonsoft.Json;
 //
 using SimpleInventory.Models;
-using SimpleInventory.Helpers;
+//
+using BadBetaSoftware.Quick.Common;
+using BadBetaSoftware.Quick.Common.Helpers;
+//
 using SimpleInventory.Interfaces;
 using System.Windows;
 //

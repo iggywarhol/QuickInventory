@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 //
-namespace SimpleInventory.Helpers
+namespace BadBetaSoftware.Quick.Common.Helpers
 {
     public abstract class ValueObject<T> : IEquatable<T> where T : ValueObject<T>
     {
